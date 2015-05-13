@@ -344,22 +344,15 @@ public class Form extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         DB d = new DB();
         String[][] v = d.getTeachers();
-        String vi;
-        javax.swing.table.DefaultTableModel dtm=new javax.swing.table.DefaultTableModel();
+        javax.swing.table.DefaultTableModel dtm = new javax.swing.table.DefaultTableModel();
         String[] c = {"Фамилия", "Имя", "Отчество"};
         dtm.setColumnIdentifiers(c);
         dtm.setRowCount(v.length);
-        System.out.println("ok");
         for(int i = 0; i < v.length; i++){
-            vi = v[i][0];
-            dtm.setValueAt(vi, i, 0);
-            vi = v[i][1];
-            dtm.setValueAt(vi, i, 1);
-            vi = v[i][2];
-            dtm.setValueAt(vi, i, 2);
+            dtm.setValueAt(v[i][0], i, 0);
+            dtm.setValueAt(v[i][1], i, 1);
+            dtm.setValueAt(v[i][2], i, 2);
         }
-        
-
         jTable1.setModel(dtm);
     }//GEN-LAST:event_jButton3ActionPerformed
 
