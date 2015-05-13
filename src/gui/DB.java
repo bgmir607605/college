@@ -19,7 +19,7 @@ import java.sql.Statement;
 public class DB {
     String userName = "admin";
     String password = "12345678";
-    String url = "jdbc:mysql://188.120.245.21:3306/bpt?zeroDateTimeBehavior=convertToNull";
+    String url = "jdbc:mysql://188.120.245.21:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
     
     public String[] getGroups(){
         Connection conn = null;
@@ -62,14 +62,14 @@ public class DB {
         return arr;
     }
     
-    public void addTeacher(String q) throws SQLException{
+    public void ins(String q) throws SQLException{
         Connection conn = null;
         try
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
             Statement stmt = null;
-            ResultSet rs= null;
+            ResultSet rs = null;
             stmt = conn.createStatement();          
             stmt.executeUpdate(q);
             System.out.println ("Database connection established");
