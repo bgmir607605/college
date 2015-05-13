@@ -343,16 +343,20 @@ public class Form extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         DB d = new DB();
-        String[] v = d.getGroups();
+        String[][] v = d.getTeachers();
         String vi;
         javax.swing.table.DefaultTableModel dtm=new javax.swing.table.DefaultTableModel();
-        String[] c = {"id", "Фамилия", "Имя", "Отчество"};
+        String[] c = {"Фамилия", "Имя", "Отчество"};
         dtm.setColumnIdentifiers(c);
-        dtm.setRowCount(5);
+        dtm.setRowCount(v.length);
         System.out.println("ok");
         for(int i = 0; i < v.length; i++){
-            vi = v[i];
+            vi = v[i][0];
             dtm.setValueAt(vi, i, 0);
+            vi = v[i][1];
+            dtm.setValueAt(vi, i, 1);
+            vi = v[i][2];
+            dtm.setValueAt(vi, i, 2);
         }
         
 
