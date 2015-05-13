@@ -125,5 +125,30 @@ public class DB {
           
            
     }
+    public void del(String q) throws SQLException{
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);
+            Statement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.createStatement();          
+            stmt.executeUpdate(q);
+            System.out.println ("Database connection established");
+        }
+        catch (Exception ex)
+        {
+            System.err.println ("Cannot connect to database server");
+            ex.printStackTrace();
+        }
+        
+        
+        finally
+        {
+            closeCon();
+        }
+          
+           
+    }
     
 }
