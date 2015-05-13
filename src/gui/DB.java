@@ -20,9 +20,21 @@ public class DB {
     String userName = "admin";
     String password = "12345678";
     String url = "jdbc:mysql://188.120.245.21:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
+    Connection conn = null;
+    
+    void closeCon(){
+        if (conn != null)
+            {
+                try
+                {
+                    conn.close ();
+                    System.out.println ("Database connection terminated");
+                }
+                catch (Exception ex) { }
+            }
+    }
     
     public String[] getGroups(){
-        Connection conn = null;
         String[] arr = null;
         try
         {       
@@ -31,7 +43,6 @@ public class DB {
             Statement stmt = null;
             ResultSet rs= null;
             stmt = conn.createStatement();   
-            
             rs = stmt.executeQuery("select * from groups");
             rs.last();
             int e = rs.getRow();
@@ -50,20 +61,12 @@ public class DB {
         }
         finally
         {
-            if (conn != null)
-            {
-                try
-                {
-                    conn.close ();
-                }
-                catch (Exception ex) { }
-            }
+            closeCon();
         }
         return arr;
     }
     
     public void ins(String q) throws SQLException{
-        Connection conn = null;
         try
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
@@ -83,15 +86,7 @@ public class DB {
         
         finally
         {
-            if (conn != null)
-            {
-                try
-                {
-                    conn.close ();
-                    System.out.println ("Database connection terminated");
-                }
-                catch (Exception ex) { }
-            }
+            closeCon();
         }
           
            
