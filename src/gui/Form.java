@@ -243,6 +243,8 @@ public class Form extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
+        sNameEdit.setText(null);
+        fNameEdit.setText(null);
     }//GEN-LAST:event_addDisciplineButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -252,6 +254,9 @@ public class Form extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
+        fNameTeacher.setText(null);
+        mNameTeacher.setText(null);
+        lNameTeacher.setText(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
