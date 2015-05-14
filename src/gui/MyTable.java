@@ -13,8 +13,9 @@ package gui;
 public class MyTable extends javax.swing.table.DefaultTableModel {
     MyTable(String tab){
         DB d = new DB();
-        if (tab.equals("teachers")){
-            String[][] v = d.getTeachers();
+        switch(tab){
+            case "teachers" :
+            String[][] v = d.selSQL(tab);
             String[] c = {"Фамилия", "Имя", "Отчество"};
             this.setColumnIdentifiers(c);
             this.setRowCount(v.length);
@@ -23,6 +24,7 @@ public class MyTable extends javax.swing.table.DefaultTableModel {
                 this.setValueAt(v[i][1], i, 1);
                 this.setValueAt(v[i][2], i, 2);
             }
+            break;
         }
     }
     

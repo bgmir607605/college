@@ -66,7 +66,7 @@ public class DB {
         return arr;
     }
     
-    public String[][] getTeachers(){
+    public String[][] selSQL(String t){
         String[][] arr = null;
         try
         {       
@@ -75,22 +75,22 @@ public class DB {
             Statement stmt = null;
             ResultSet rs= null;
             stmt = conn.createStatement();   
-            rs = stmt.executeQuery("select * from teachers");
+            rs = stmt.executeQuery("select * from " + t + ";");
             rs.last();
-            int e = rs.getRow();
+            int m = rs.getRow();
+            int n = rs.getMetaData().getColumnCount();
             rs.beforeFirst();
-            arr = new String[e][3];
+            arr = new String[m][n];
             int i = 0;
             while (rs.next()){
-                arr[i][0] = rs.getString(4);
-                arr[i][1] = rs.getString(2);
-                arr[i][2] = rs.getString(3);
+                for (int j = 1; j < n; j++){
+                    arr[i][--j] = rs.getString(++j);
+                }
                 i++;
             }          
         }
         catch (Exception ex)
         {
-            System.err.println ("Cannot connect to database server");
             ex.printStackTrace();
         }
         finally
@@ -150,6 +150,5 @@ public class DB {
           
            
     }
-
     
 }
