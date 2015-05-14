@@ -353,7 +353,7 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MyTable t = new MyTable();
+        MyTable t = new MyTable("teachers");
         jTable1.setModel(t);
     }//GEN-LAST:event_jButton3ActionPerformed
 
