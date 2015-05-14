@@ -83,7 +83,7 @@ public class DB {
             arr = new String[m][n];
             int i = 0;
             while (rs.next()){
-                for (int j = 1; j < n; j++){
+                for (int j = 1; j <= n; j++){
                     arr[i][--j] = rs.getString(++j);
                 }
                 i++;
