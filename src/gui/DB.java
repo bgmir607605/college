@@ -66,7 +66,7 @@ public class DB {
         return arr;
     }
     
-    public String[][] selSQL(String t){
+    public String[][] getTab(String t){
         String[][] arr = null;
         try
         {       

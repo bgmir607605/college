@@ -15,7 +15,7 @@ public class MyTable extends javax.swing.table.DefaultTableModel {
         DB d = new DB();
         switch(tab){
             case "teachers" :
-            String[][] v = d.selSQL(tab);
+            String[][] v = d.getTab(tab);
             String[] c = {"Фамилия", "Имя", "Отчество"};
             this.setColumnIdentifiers(c);
             this.setRowCount(v.length);

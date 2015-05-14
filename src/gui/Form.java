@@ -21,8 +21,12 @@ public class Form extends javax.swing.JFrame {
      */
     public Form() {
         initComponents();
+        refTab();
     }
-
+    void refTab(){
+        MyTable t = new MyTable("teachers");
+        jTable1.setModel(t);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +62,6 @@ public class Form extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
         delTeacher = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -216,23 +219,13 @@ public class Form extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         delTeacher.setText("Удалить");
         delTeacher.addActionListener(new java.awt.event.ActionListener() {
@@ -262,7 +255,6 @@ public class Form extends javax.swing.JFrame {
                                 .addComponent(fNameTeacher, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lNameTeacher, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton3)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(delTeacher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
@@ -291,9 +283,7 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(delTeacher)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(46, 46, 46))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Преподаватели", jPanel6);
@@ -339,6 +329,7 @@ public class Form extends javax.swing.JFrame {
         fNameTeacher.setText(null);
         mNameTeacher.setText(null);
         lNameTeacher.setText(null);
+        refTab();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -352,11 +343,6 @@ public class Form extends javax.swing.JFrame {
         nameSpec.setText(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MyTable t = new MyTable("teachers");
-        jTable1.setModel(t);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void delTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delTeacherActionPerformed
         try {
             System.out.println(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
@@ -365,6 +351,7 @@ public class Form extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
+        refTab();
     }//GEN-LAST:event_delTeacherActionPerformed
 
     /**
@@ -410,7 +397,6 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JTextField fNameTeacher;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
