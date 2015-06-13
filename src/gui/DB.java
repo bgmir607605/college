@@ -17,9 +17,9 @@ import java.sql.Statement;
  * @author Andrey
  */
 public class DB {
-    String userName = "admin";
-    String password = "12345678";
-    String url = "jdbc:mysql://188.120.245.21:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
+    String userName = "root";
+    String password = "";
+    String url = "jdbc:mysql://127.0.0.1:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
     Connection conn = null;
     
     void closeCon(){
@@ -93,10 +93,7 @@ public class DB {
         {
             ex.printStackTrace();
         }
-        finally
-        {
-            closeCon();
-        }
+        finally {closeCon();}
         return arr;
     }
     
@@ -143,6 +140,29 @@ public class DB {
         }
         
         
+        finally
+        {
+            closeCon();
+        }
+          
+           
+    }
+    public void delUpdate(String q) throws SQLException{
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);
+            Statement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.createStatement();          
+            stmt.executeUpdate(q);
+            System.out.println ("Database connection established");
+        }
+        catch (Exception ex)
+        {
+            System.err.println ("Cannot connect to database server");
+            ex.printStackTrace();
+        }
         finally
         {
             closeCon();
