@@ -15,6 +15,9 @@ import javax.swing.*;
  */
 public class EditForm extends javax.swing.JFrame {
     Form ob;
+    String oldLName;
+    String oldFName;
+    String oldMName;
     public JTextField lName =new JTextField();
     public JTextField fName =new JTextField();
     public JTextField mName =new JTextField();
@@ -23,9 +26,23 @@ public class EditForm extends javax.swing.JFrame {
     /**
      * Creates new form EditForm
      */
-    public EditForm(Form form) {
+    public EditForm(Form form, String ln, String fn, String mn) {
         ob = form;
+        oldLName = ln;
+        oldFName = fn;
+        oldMName = mn;
         initComponents();
+        lName.setBounds(10, 10, 120, 30);
+        fName.setBounds(10, 50, 120, 30);
+        mName.setBounds(10, 90, 120, 30);
+        add(this.lName);
+        add(this.fName);
+        add(this.mName);
+        lName.setText(ln);
+        fName.setText(fn);
+        mName.setText(mn);
+        revalidate();
+        setVisible(true);
     }
 
     /**
@@ -69,17 +86,24 @@ public class EditForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        q = "UPDATE  `teachers` SET  `lName` =  '" + this.lName.getText() + "', `fname` = '" + fName.getText() + "', `mName` = '" + mName.getText() + "' WHERE  `id` =29;";
-        System.out.println(q);
-        DB d = new DB();
-        try {
-            d.delUpdate(q);
-        } catch (SQLException ex) {
-            Logger.getLogger(EditForm.class.getName()).log(Level.SEVERE, null, ex);
+        if (Checks.notEmpTeacher(lName.getText(), fName.getText(), mName.getText())){
+            q = "UPDATE  `teachers` SET  `lName` =  '" + lName.getText() + "', "
+                + "`fname` = '" + fName.getText() + "', "
+                + "`mName` = '" + mName.getText() + "' "
+                + "WHERE  `lname` ='" + oldLName + "' "
+                + "AND `fname` ='" + oldFName + "' "
+                + "AND`mname` ='" + oldMName + "';";
+            System.out.println(q);
+            DB d = new DB();
+            try {
+                d.delUpdate(q);
+            } catch (SQLException ex) {
+                Logger.getLogger(EditForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.setVisible(false);
+            ob.refTab();
         }
         
-        this.setVisible(false);
-        ob.refTab();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

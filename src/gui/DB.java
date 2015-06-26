@@ -17,18 +17,37 @@ import java.sql.Statement;
  * @author Andrey
  */
 public class DB {
+    
+    //Параметры подключения
     String userName = "root";
     String password = "";
     String url = "jdbc:mysql://127.0.0.1:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
     Connection conn = null;
+   
+    //Проверка подключенния
+    boolean test(){
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+        finally {
+            closeCon();
+        }
+    }
     
+    //Закрытие соединения
     void closeCon(){
         if (conn != null)
             {
                 try
                 {
                     conn.close ();
-                    System.out.println ("Database connection terminated");
                 }
                 catch (Exception ex) { }
             }
@@ -66,6 +85,7 @@ public class DB {
         return arr;
     }
     
+    //Получить таблицу
     public String[][] getTab(String t){
         String[][] arr = null;
         try
@@ -113,15 +133,12 @@ public class DB {
             System.err.println ("Cannot connect to database server");
             ex.printStackTrace();
         }
-        
-        
         finally
         {
             closeCon();
-        }
-          
-           
+        }  
     }
+    
     public void del(String q) throws SQLException{
         try
         {       
@@ -137,16 +154,13 @@ public class DB {
         {
             System.err.println ("Cannot connect to database server");
             ex.printStackTrace();
-        }
-        
-        
+        }    
         finally
         {
             closeCon();
-        }
-          
-           
+        }  
     }
+    
     public void delUpdate(String q) throws SQLException{
         try
         {       
@@ -166,9 +180,7 @@ public class DB {
         finally
         {
             closeCon();
-        }
-          
-           
+        }       
     }
     
 }
