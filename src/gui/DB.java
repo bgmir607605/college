@@ -23,6 +23,8 @@ public class DB {
     static String password = "";
     static String url = "jdbc:mysql://127.0.0.1:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
     static Connection conn = null;
+    Statement stmt = null;
+    ResultSet rs = null;
    
     //Проверка подключенния
     static boolean test(){
@@ -59,8 +61,6 @@ public class DB {
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
-            Statement stmt = null;
-            ResultSet rs= null;
             stmt = conn.createStatement();   
             rs = stmt.executeQuery("select * from groups");
             rs.last();
@@ -91,10 +91,8 @@ public class DB {
         try
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection (url, userName, password);
-            Statement stmt = null;
-            ResultSet rs= null;
-            stmt = conn.createStatement();   
+            conn = DriverManager.getConnection (url, userName, password);   
+            stmt = conn.createStatement();
             rs = stmt.executeQuery("select * from " + t + ";");
             rs.last();
             int m = rs.getRow();
@@ -122,8 +120,6 @@ public class DB {
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
-            Statement stmt = null;
-            ResultSet rs = null;
             stmt = conn.createStatement();          
             stmt.executeUpdate(q);
             System.out.println ("Database connection established");
@@ -144,8 +140,6 @@ public class DB {
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
-            Statement stmt = null;
-            ResultSet rs = null;
             stmt = conn.createStatement();          
             stmt.executeUpdate(q);
             System.out.println ("Database connection established");
@@ -166,8 +160,6 @@ public class DB {
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
-            Statement stmt = null;
-            ResultSet rs = null;
             stmt = conn.createStatement();          
             stmt.executeUpdate(q);
             System.out.println ("Database connection established");
