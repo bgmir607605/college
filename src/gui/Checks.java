@@ -25,7 +25,7 @@ public class Checks {
      
     //Проверка подключения к БД
     public static boolean testConnect(){
-        return new DB().test();
+        return DB.test();
     }
     
 }

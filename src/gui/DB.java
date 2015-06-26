@@ -19,13 +19,13 @@ import java.sql.Statement;
 public class DB {
     
     //Параметры подключения
-    String userName = "root";
-    String password = "";
-    String url = "jdbc:mysql://127.0.0.1:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
-    Connection conn = null;
+    static String userName = "root";
+    static String password = "";
+    static String url = "jdbc:mysql://127.0.0.1:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
+    static Connection conn = null;
    
     //Проверка подключенния
-    boolean test(){
+    static boolean test(){
         try
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
@@ -42,7 +42,7 @@ public class DB {
     }
     
     //Закрытие соединения
-    void closeCon(){
+    static void closeCon(){
         if (conn != null)
             {
                 try
