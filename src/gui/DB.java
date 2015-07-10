@@ -54,36 +54,7 @@ public class DB {
                 catch (Exception ex) { }
             }
     }
-    
-    public String[] getGroups(){
-        String[] arr = null;
-        try
-        {       
-            Class.forName ("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection (url, userName, password);
-            stmt = conn.createStatement();   
-            rs = stmt.executeQuery("select * from groups");
-            rs.last();
-            int e = rs.getRow();
-            rs.beforeFirst();
-            arr = new String[e];
-            int i = 0;
-            while (rs.next()){
-                arr[i] = rs.getString(2);
-                i++;
-            }          
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
-            closeCon();
-        }
-        return arr;
-    }
-    
+        
     //Получить таблицу
     public String[][] getTab(String t){
         String[][] arr = null;
@@ -128,6 +99,60 @@ public class DB {
         return arr;
     }
     
+    //Получить список для КомбоБоксов без условий
+    public String[] getBoxList(String f, String t){
+        String[] arr = null;
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);   
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select " + f + " from " + t + ";");
+            rs.last();
+            int m = rs.getRow();
+            rs.beforeFirst();
+            arr = new String[m];
+            int i = 0;
+            while (rs.next()){
+                arr[i] = rs.getString(1);
+                i++;
+            }          
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally {closeCon();}
+        return arr;
+    }
+    
+    //Получить список для КомбоБоксов с условием
+    public String[] getBoxList(String f, String t, String w){
+        String[] arr = null;
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);   
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select " + f + " from " + t + " where " + w + ";");
+            rs.last();
+            int m = rs.getRow();
+            rs.beforeFirst();
+            arr = new String[m];
+            int i = 0;
+            while (rs.next()){
+                arr[i] = rs.getString(1);
+                i++;
+            }          
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally {closeCon();}
+        return arr;
+    }
+    
     public void ins(String q) throws SQLException{
         try
         {       
@@ -146,13 +171,13 @@ public class DB {
         }  
     }
     
-    public void del(String q) throws SQLException{
+    public void del(String t, String w) throws SQLException{
         try
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);
-            stmt = conn.createStatement();          
-            stmt.executeUpdate(q);
+            stmt = conn.createStatement();
+            stmt.executeUpdate("delete from " + t + " where " + w + ";");
         }
         catch (Exception ex)
         {
