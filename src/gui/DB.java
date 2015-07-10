@@ -75,7 +75,6 @@ public class DB {
         }
         catch (Exception ex)
         {
-            System.err.println ("Cannot connect to database server");
             ex.printStackTrace();
         }
         finally
@@ -93,7 +92,21 @@ public class DB {
             Class.forName ("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection (url, userName, password);   
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("select * from " + t + ";");
+                rs = stmt.executeQuery("select * from " + t + ";");
+                
+                if (t.equals("groups")){
+                    rs = stmt.executeQuery("SELECT groups.name, specialty.name "
+                        + "FROM groups LEFT OUTER JOIN specialty "
+                        + "ON groups.specialtyId=specialty.id;");
+                }
+                if (t.equals("teacherLoad")){
+                    rs = stmt.executeQuery("SELECT teachers.lName, "
+                        + "teachers.fName, teachers.mName, groups.name, "
+                        + "discipline.shortName FROM teacherLoad "
+                        + "LEFT OUTER JOIN teachers ON teacherLoad.teacherId=teachers.id "
+                        + "LEFT OUTER JOIN groups ON teacherLoad.groupId=groups.id "
+                        + "LEFT OUTER JOIN discipline ON teacherLoad.disciplineId=discipline.id;");
+                }
             rs.last();
             int m = rs.getRow();
             int n = rs.getMetaData().getColumnCount();
@@ -122,11 +135,9 @@ public class DB {
             conn = DriverManager.getConnection (url, userName, password);
             stmt = conn.createStatement();          
             stmt.executeUpdate(q);
-            System.out.println ("Database connection established");
         }
         catch (Exception ex)
         {
-            System.err.println ("Cannot connect to database server");
             ex.printStackTrace();
         }
         finally
@@ -142,11 +153,9 @@ public class DB {
             conn = DriverManager.getConnection (url, userName, password);
             stmt = conn.createStatement();          
             stmt.executeUpdate(q);
-            System.out.println ("Database connection established");
         }
         catch (Exception ex)
         {
-            System.err.println ("Cannot connect to database server");
             ex.printStackTrace();
         }    
         finally
@@ -162,11 +171,9 @@ public class DB {
             conn = DriverManager.getConnection (url, userName, password);
             stmt = conn.createStatement();          
             stmt.executeUpdate(q);
-            System.out.println ("Database connection established");
         }
         catch (Exception ex)
         {
-            System.err.println ("Cannot connect to database server");
             ex.printStackTrace();
         }
         finally

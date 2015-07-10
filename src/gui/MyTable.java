@@ -51,8 +51,19 @@ public class MyTable extends javax.swing.table.DefaultTableModel {
             String[] c4 = {"Группа", "Специальность"};
             getData(tab, c4);
             for(int i = 0; i < v.length; i++){
-                this.setValueAt(v[i][1], i, 0);
-                this.setValueAt(v[i][2], i, 1);
+                this.setValueAt(v[i][0], i, 0);
+                this.setValueAt(v[i][1], i, 1);
+            }
+            break;    
+            case "teacherLoad":
+            String[] c5 = {"Фамилия", "Имя", "Отчество", "Группа", "Дисциплина"};
+            getData(tab, c5);
+            for(int i = 0; i < v.length; i++){
+                this.setValueAt(v[i][0], i, 0);
+                this.setValueAt(v[i][1], i, 1);
+                this.setValueAt(v[i][2], i, 2);
+                this.setValueAt(v[i][3], i, 3);
+                this.setValueAt(v[i][4], i, 4);
             }
             break;
         }
