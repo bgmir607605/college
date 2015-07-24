@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package gui;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,7 +27,7 @@ public class DB {
     ResultSet rs = null;
    
     //Проверка подключенния
-    static boolean test(){
+    public static boolean test(){
         try
         {       
             Class.forName ("com.mysql.jdbc.Driver").newInstance();

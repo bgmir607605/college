@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package gui;
+package model;
 
+import model.DB;
 import javax.swing.JTable;
 
 /**
@@ -20,7 +21,7 @@ public class MyTable extends javax.swing.table.DefaultTableModel {
         this.setColumnIdentifiers(c);//устанавливаем названия столбцов из массива
         this.setRowCount(v.length);//устанавливаем количество строк равное количеству записей в таблице
     }
-    MyTable(String tab){
+    public MyTable(String tab){
         switch(tab){
             case "teachers" :    
             String[] c1 = {"Фамилия", "Имя", "Отчество"};
