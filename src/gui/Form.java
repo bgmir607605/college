@@ -9,6 +9,7 @@ package gui;
 import java.io.IOException;
 import model.MyTable;
 import model.DB;
+import tabs.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +29,7 @@ public class Form extends javax.swing.JFrame {
         refTab();
         this.setVisible(true);
     }
-    void refTab(){
+    public void refTab(){
         jTable1.setModel(new MyTable("teachers"));
         jTable2.setModel(new MyTable("discipline"));
         jTable3.setModel(new MyTable("specialty"));
@@ -75,19 +76,6 @@ public class Form extends javax.swing.JFrame {
         for (int i = 0; i < a.length; i++){
             jComboBox2.addItem(a[i]);
         }
-    }
-    void clearTeacher(){
-        fNameTeacher.setText(null);
-        mNameTeacher.setText(null);
-        lNameTeacher.setText(null);
-    }
-    void addTeacher(){
-            try {
-                DB d = new DB();
-                d.ins("INSERT INTO teachers (fName, mName, lName) values('"+ fNameTeacher.getText() + "', '"+ mNameTeacher.getText() + "', '" + lNameTeacher.getText() + "');");
-            } catch (SQLException ex) {
-                Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
-            }        
     }
     
     /**
@@ -585,9 +573,7 @@ public class Form extends javax.swing.JFrame {
 
     private void addTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTeacherActionPerformed
         if (Checks.notEmpTeacher(lNameTeacher.getText(), fNameTeacher.getText(), mNameTeacher.getText())){
-            addTeacher();
-            clearTeacher();
-            refTab();
+            new Teacher(this).addTeacher();
         }
     }//GEN-LAST:event_addTeacherActionPerformed
 
@@ -650,7 +636,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JButton delTeacher;
     private javax.swing.JButton editTeacher;
     private javax.swing.JTextField fNameEdit;
-    private javax.swing.JTextField fNameTeacher;
+    public javax.swing.JTextField fNameTeacher;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1;
@@ -690,8 +676,8 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField lNameTeacher;
-    private javax.swing.JTextField mNameTeacher;
+    public javax.swing.JTextField lNameTeacher;
+    public javax.swing.JTextField mNameTeacher;
     private javax.swing.JTextField nameSpec;
     private javax.swing.JTextField sNameEdit;
     private javax.swing.JLabel Имя;
