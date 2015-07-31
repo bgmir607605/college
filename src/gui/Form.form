@@ -379,7 +379,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -390,6 +389,10 @@
                                   <Component id="codeSpec" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="nameSpec" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -415,6 +418,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -438,8 +443,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="codeSpec">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="nameSpec">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
@@ -462,9 +473,20 @@
                       <Table columnCount="0" rowCount="0"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButton3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x423;&#x434;&#x430;&#x43b;&#x438;&#x442;&#x44c;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -489,14 +511,15 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel1" pref="120" max="32767" attributes="0"/>
-                                  <Component id="sNameEdit" pref="120" max="32767" attributes="0"/>
+                                  <Component id="sName" pref="120" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="fNameEdit" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="fName" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="367" max="-2" attributes="0"/>
@@ -516,11 +539,13 @@
                           <Group type="102" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="sNameEdit" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fNameEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fName" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="addDisciplineButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -543,12 +568,18 @@
                 <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x43b;&#x43d;&#x43e;&#x435; &#x43d;&#x430;&#x438;&#x43c;&#x435;&#x43d;&#x43e;&#x432;&#x430;&#x43d;&#x438;&#x435;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="sNameEdit">
+            <Component class="javax.swing.JTextField" name="sName">
               <Properties>
                 <Property name="name" type="java.lang.String" value="sName" noResource="true"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="fNameEdit">
+            <Component class="javax.swing.JTextField" name="fName">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="addDisciplineButton">
               <Properties>
@@ -571,9 +602,20 @@
                       <Table columnCount="0" rowCount="0"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x423;&#x434;&#x430;&#x43b;&#x438;&#x442;&#x44c;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel6">
@@ -713,6 +755,9 @@
                       <Table columnCount="0" rowCount="0"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

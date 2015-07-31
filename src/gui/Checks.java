@@ -23,6 +23,26 @@ public class Checks {
             return true;
         }
     }
+    
+    public static boolean notEmpDiscipline(String s, String f){
+        if (s.equals("") || f.equals("")){
+            JOptionPane.showMessageDialog(null,"Заполните названия дисциплин полностью", "Не все поля заполнены", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
+    public static boolean notEmpSpecialty(String c, String n){
+        if (c.equals("") || n.equals("")){
+            JOptionPane.showMessageDialog(null,"Заполните сведения о специальности полностью", "Не все поля заполнены", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
      
     //Проверка подключения к БД
     public static boolean testConnect(){

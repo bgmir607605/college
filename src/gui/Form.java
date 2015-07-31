@@ -116,14 +116,16 @@ public class Form extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        sNameEdit = new javax.swing.JTextField();
-        fNameEdit = new javax.swing.JTextField();
+        sName = new javax.swing.JTextField();
+        fName = new javax.swing.JTextField();
         addDisciplineButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         Фамилия = new javax.swing.JLabel();
         Имя = new javax.swing.JLabel();
@@ -315,6 +317,13 @@ public class Form extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
+        jButton3.setText("Удалить");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -322,7 +331,6 @@ public class Form extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -330,7 +338,10 @@ public class Form extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(codeSpec, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameSpec, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(nameSpec, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton3)
+                        .addComponent(jButton2)))
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -349,7 +360,9 @@ public class Form extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(nameSpec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -364,7 +377,7 @@ public class Form extends javax.swing.JFrame {
 
         jLabel2.setText("Полное наименование");
 
-        sNameEdit.setName("sName"); // NOI18N
+        sName.setName("sName"); // NOI18N
 
         addDisciplineButton.setText("Добавить");
         addDisciplineButton.addActionListener(new java.awt.event.ActionListener() {
@@ -383,6 +396,13 @@ public class Form extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
+        jButton1.setText("Удалить");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -394,11 +414,12 @@ public class Form extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(sNameEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                            .addComponent(sName, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fNameEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
@@ -414,10 +435,12 @@ public class Form extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sNameEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fNameEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(addDisciplineButton))
+                        .addComponent(addDisciplineButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -561,46 +584,19 @@ public class Form extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addDisciplineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDisciplineButtonActionPerformed
-        try {
-            DB d = new DB();
-            d.ins("INSERT INTO discipline (shortName, fullName) values('"+ sNameEdit.getText() + "', '"+ fNameEdit.getText() + "');");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        sNameEdit.setText(null);
-        fNameEdit.setText(null);
+        new Discipline(this).addDiscipline();
     }//GEN-LAST:event_addDisciplineButtonActionPerformed
 
     private void addTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTeacherActionPerformed
-        if (Checks.notEmpTeacher(lNameTeacher.getText(), fNameTeacher.getText(), mNameTeacher.getText())){
-            new Teacher(this).addTeacher();
-        }
+        new Teacher(this).addTeacher();
     }//GEN-LAST:event_addTeacherActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            DB d = new DB();
-            d.ins("INSERT INTO specialty (code, name) values('"+ codeSpec.getText() + "', '"+ nameSpec.getText() + "');");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        codeSpec.setText(null);
-        nameSpec.setText(null);
+        new Specialty(this).addSpecialty();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void delTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delTeacherActionPerformed
-        /**
-         * Ошибка при удалении записи, имеющей внешние связи в БД
-         * 
-         * 
-         */
-        DB d = new DB(); 
-        try {
-            d.del("teachers", "lName = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and fName = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "' and mName = '" + jTable1.getValueAt(jTable1.getSelectedRow(), 2) + "'");
-        } catch (SQLException ex) {
-            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        refTab();
+        new Teacher(this).delTeacher();
     }//GEN-LAST:event_delTeacherActionPerformed
 
     private void editTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTeacherActionPerformed
@@ -624,6 +620,14 @@ public class Form extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new Discipline(this).delDiscipline();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new Specialty(this).delSpecialty();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -632,12 +636,14 @@ public class Form extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDisciplineButton;
     private javax.swing.JButton addTeacher;
-    private javax.swing.JTextField codeSpec;
+    public javax.swing.JTextField codeSpec;
     private javax.swing.JButton delTeacher;
     private javax.swing.JButton editTeacher;
-    private javax.swing.JTextField fNameEdit;
+    public javax.swing.JTextField fName;
     public javax.swing.JTextField fNameTeacher;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
@@ -670,16 +676,16 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    public javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable2;
+    public javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField lNameTeacher;
     public javax.swing.JTextField mNameTeacher;
-    private javax.swing.JTextField nameSpec;
-    private javax.swing.JTextField sNameEdit;
+    public javax.swing.JTextField nameSpec;
+    public javax.swing.JTextField sName;
     private javax.swing.JLabel Имя;
     private javax.swing.JLabel Отчество;
     private javax.swing.JLabel Фамилия;
