@@ -35,4 +35,19 @@ public class Group {
         form.refTab();
         }
     }
+    public void delGroup(){
+                /**
+         * Ошибка при удалении записи, имеющей внешние связи в БД
+         * 
+         * 
+         */ 
+        int sr = form.jTable4.getSelectedRow();
+        nG = (String) form.jTable4.getValueAt(sr, 0);
+        try {
+            new DB().del("groups", "name = '" + nG + "'");
+        } catch (SQLException ex) {
+            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.refTab();
+    }
 }

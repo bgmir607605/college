@@ -47,4 +47,24 @@ public class TeacherLoad {
         form.refTab();
         }
     }
+    public void delTeacherLoad(){
+                /**
+         * Ошибка при удалении записи, имеющей внешние связи в БД
+         * 
+         * 
+         */ 
+        int sr = form.jTable5.getSelectedRow();
+        l = (String) form.jTable5.getValueAt(sr, 0);
+        f = (String) form.jTable5.getValueAt(sr, 1);
+        m = (String) form.jTable5.getValueAt(sr, 2);
+        g = (String) form.jTable5.getValueAt(sr, 3);
+        d = (String) form.jTable5.getValueAt(sr, 4);
+        
+        try {
+            new DB().del("teacherLoad", "teacherId = (select id from teachers where fName = '" + f + "' and lName = '" + l + "' and mName = '" + m + "') and groupId = (select id from groups where name = '" + g + "') and disciplineId = (select id from discipline where shortName = '" + d + "')");
+        } catch (SQLException ex) {
+            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        form.refTab();
+    }
 }
