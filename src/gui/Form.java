@@ -58,6 +58,7 @@ public class Form extends javax.swing.JFrame {
         String[] a = d.getBoxList("name", "groups");
         for (int i = 0; i < a.length; i++){
             comboGroup.addItem(a[i]);
+            groupShedule.addItem(a[i]);
         }
     }
         
@@ -100,6 +101,12 @@ public class Form extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        shedule11 = new javax.swing.JComboBox();
+        shedule12 = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
+        groupShedule = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -159,15 +166,67 @@ public class Form extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel3.setText("1 пара");
+
+        shedule11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        shedule12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel4.setText("Группа");
+
+        groupShedule.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                groupShedulePopupMenuWillBecomeVisible(evt);
+            }
+        });
+        groupShedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                groupSheduleActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Дата");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 699, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(shedule12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(groupShedule, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5))
+                .addContainerGap(555, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 315, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(groupShedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(shedule12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Расписание", jPanel1);
@@ -702,6 +761,23 @@ public class Form extends javax.swing.JFrame {
         new TeacherLoad(this).delTeacherLoad();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void groupSheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupSheduleActionPerformed
+        shedule11.removeAllItems();
+        shedule12.removeAllItems();
+        DB d = new DB();
+        String[] a = d.getBoxList("shortName", "discipline", "id in ((select disciplineId from teacherLoad where groupId = (select id from groups where name = '" + groupShedule.getSelectedItem()  + "')))");
+        for (int i = 0; i < a.length; i++){
+            shedule11.addItem(a[i]);
+            shedule12.addItem(a[i]);
+            
+        }
+        
+    }//GEN-LAST:event_groupSheduleActionPerformed
+
+    private void groupShedulePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_groupShedulePopupMenuWillBecomeVisible
+System.out.println("Нажали комбик");        // TODO add your handling code here:
+    }//GEN-LAST:event_groupShedulePopupMenuWillBecomeVisible
+
     /**
      * @param args the command line arguments
      */
@@ -720,6 +796,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JButton editTeacher;
     public javax.swing.JTextField fName;
     public javax.swing.JTextField fNameTeacher;
+    private javax.swing.JComboBox groupShedule;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -732,6 +809,9 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -763,6 +843,8 @@ public class Form extends javax.swing.JFrame {
     public javax.swing.JTextField nameSpec;
     public javax.swing.JComboBox nameSpecOfGroup;
     public javax.swing.JTextField sName;
+    private javax.swing.JComboBox shedule11;
+    private javax.swing.JComboBox shedule12;
     private javax.swing.JLabel Имя;
     private javax.swing.JLabel Отчество;
     private javax.swing.JLabel Фамилия;
