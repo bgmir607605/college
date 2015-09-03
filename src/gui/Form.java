@@ -107,6 +107,8 @@ public class Form extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         groupShedule = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        sheduleTeacher11 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -169,6 +171,11 @@ public class Form extends javax.swing.JFrame {
         jLabel3.setText("1 пара");
 
         shedule11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        shedule11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shedule11ActionPerformed(evt);
+            }
+        });
 
         shedule12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -191,25 +198,42 @@ public class Form extends javax.swing.JFrame {
 
         jLabel5.setText("Дата");
 
+        jButton8.setText("Добавить");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        sheduleTeacher11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(shedule12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(shedule12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(53, 53, 53)
+                                        .addComponent(sheduleTeacher11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(groupShedule, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(groupShedule, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5))
-                .addContainerGap(555, Short.MAX_VALUE))
+                        .addGap(195, 195, 195)
+                        .addComponent(jButton8)))
+                .addContainerGap(421, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,10 +247,13 @@ public class Form extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sheduleTeacher11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(shedule12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(jButton8)
+                .addGap(26, 26, 26))
         );
 
         jTabbedPane1.addTab("Расписание", jPanel1);
@@ -778,6 +805,21 @@ public class Form extends javax.swing.JFrame {
 System.out.println("Нажали комбик");        // TODO add your handling code here:
     }//GEN-LAST:event_groupShedulePopupMenuWillBecomeVisible
 
+    private void shedule11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule11ActionPerformed
+        sheduleTeacher11.removeAllItems();
+        DB d = new DB();
+        String[] a = d.getBoxList("lName", "teachers", "id = ((select teacherId from teacherLoad where groupId = (select id from groups where name = '" + groupShedule.getSelectedItem()  + "') and disciplineId = (select id from discipline where shortName = '" + shedule11.getSelectedItem()  + "')))");
+        for (int i = 0; i < a.length; i++){
+            sheduleTeacher11.addItem(a[i]);
+
+            
+        }
+    }//GEN-LAST:event_shedule11ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        new Shedule(this).addShedule();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -796,7 +838,7 @@ System.out.println("Нажали комбик");        // TODO add your handlin
     private javax.swing.JButton editTeacher;
     public javax.swing.JTextField fName;
     public javax.swing.JTextField fNameTeacher;
-    private javax.swing.JComboBox groupShedule;
+    public javax.swing.JComboBox groupShedule;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -804,6 +846,7 @@ System.out.println("Нажали комбик");        // TODO add your handlin
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -843,8 +886,9 @@ System.out.println("Нажали комбик");        // TODO add your handlin
     public javax.swing.JTextField nameSpec;
     public javax.swing.JComboBox nameSpecOfGroup;
     public javax.swing.JTextField sName;
-    private javax.swing.JComboBox shedule11;
+    public javax.swing.JComboBox shedule11;
     private javax.swing.JComboBox shedule12;
+    public javax.swing.JComboBox sheduleTeacher11;
     private javax.swing.JLabel Имя;
     private javax.swing.JLabel Отчество;
     private javax.swing.JLabel Фамилия;
