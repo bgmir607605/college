@@ -98,6 +98,47 @@ public class DB {
         finally {closeCon();}
         return arr;
     }
+    public String[][] getTab(String t, String w){
+        String[][] arr = null;
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);   
+            stmt = conn.createStatement();
+                rs = stmt.executeQuery("select * from " + t + ";");
+                
+                if (t.equals("groups")){
+                    rs = stmt.executeQuery("SELECT groups.name, specialty.name "
+                        + "FROM groups LEFT OUTER JOIN specialty "
+                        + "ON groups.specialtyId=specialty.id;");
+                }
+                if (t.equals("teacherLoad")){
+                    rs = stmt.executeQuery("SELECT teachers.lName, "
+                        + "teachers.fName, teachers.mName, "
+                        + "discipline.shortName FROM teacherLoad "
+                        + "LEFT OUTER JOIN teachers ON teacherLoad.teacherId=teachers.id "
+                        + "LEFT OUTER JOIN discipline ON teacherLoad.disciplineId=discipline.id where " + w + ";");
+                }
+            rs.last();
+            int m = rs.getRow();
+            int n = rs.getMetaData().getColumnCount();
+            rs.beforeFirst();
+            arr = new String[m][n];
+            int i = 0;
+            while (rs.next()){
+                for (int j = 1; j <= n; j++){
+                    arr[i][--j] = rs.getString(++j);
+                }
+                i++;
+            }          
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally {closeCon();}
+        return arr;
+    }
     
     //Получить список для КомбоБоксов без условий
     public String[] getBoxList(String f, String t){

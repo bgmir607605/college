@@ -108,32 +108,32 @@ public class Form extends javax.swing.JFrame {
         groupShedule = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
-        sheduleTeacher11 = new javax.swing.JComboBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        sheduleTeacherLName11 = new javax.swing.JComboBox();
+        check1 = new javax.swing.JCheckBox();
         shedule21 = new javax.swing.JComboBox();
         shedule22 = new javax.swing.JComboBox();
-        sheduleTeacher12 = new javax.swing.JComboBox();
-        sheduleTeacher22 = new javax.swing.JComboBox();
-        sheduleTeacher21 = new javax.swing.JComboBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        sheduleTeacherLName12 = new javax.swing.JComboBox();
+        sheduleTeacherLName22 = new javax.swing.JComboBox();
+        sheduleTeacherLName21 = new javax.swing.JComboBox();
+        check2 = new javax.swing.JCheckBox();
         jLabel13 = new javax.swing.JLabel();
-        sheduleTeacher31 = new javax.swing.JComboBox();
-        sheduleTeacher32 = new javax.swing.JComboBox();
+        sheduleTeacherLName31 = new javax.swing.JComboBox();
+        sheduleTeacherLName32 = new javax.swing.JComboBox();
         shedule32 = new javax.swing.JComboBox();
         shedule31 = new javax.swing.JComboBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        check3 = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        check4 = new javax.swing.JCheckBox();
         shedule41 = new javax.swing.JComboBox();
-        sheduleTeacher41 = new javax.swing.JComboBox();
-        sheduleTeacher42 = new javax.swing.JComboBox();
+        sheduleTeacherLName41 = new javax.swing.JComboBox();
+        sheduleTeacherLName42 = new javax.swing.JComboBox();
         shedule42 = new javax.swing.JComboBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        check5 = new javax.swing.JCheckBox();
         jLabel16 = new javax.swing.JLabel();
         shedule51 = new javax.swing.JComboBox();
-        sheduleTeacher51 = new javax.swing.JComboBox();
-        sheduleTeacher52 = new javax.swing.JComboBox();
+        sheduleTeacherLName51 = new javax.swing.JComboBox();
+        sheduleTeacherLName52 = new javax.swing.JComboBox();
         shedule52 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -202,6 +202,7 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        shedule12.setEnabled(false);
         shedule12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shedule12ActionPerformed(evt);
@@ -234,7 +235,13 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setText("общ.");
+        check1.setSelected(true);
+        check1.setText("общ.");
+        check1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check1ActionPerformed(evt);
+            }
+        });
 
         shedule21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,16 +249,24 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        shedule22.setEnabled(false);
         shedule22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shedule22ActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("общ.");
+        check2.setSelected(true);
+        check2.setText("общ.");
+        check2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check2ActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("1.");
 
+        shedule32.setEnabled(false);
         shedule32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shedule32ActionPerformed(evt);
@@ -264,13 +279,25 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox3.setText("общ.");
+        check3.setSelected(true);
+        check3.setText("общ.");
+        check3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check3ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("1.");
 
         jLabel15.setText("1.");
 
-        jCheckBox4.setText("общ.");
+        check4.setSelected(true);
+        check4.setText("общ.");
+        check4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check4ActionPerformed(evt);
+            }
+        });
 
         shedule41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,13 +305,20 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        shedule42.setEnabled(false);
         shedule42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shedule42ActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("общ.");
+        check5.setSelected(true);
+        check5.setText("общ.");
+        check5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check5ActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("1.");
 
@@ -294,6 +328,7 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        shedule52.setEnabled(false);
         shedule52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 shedule52ActionPerformed(evt);
@@ -318,7 +353,7 @@ public class Form extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox2)
+                                .addComponent(check2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(shedule21, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -329,15 +364,15 @@ public class Form extends javax.swing.JFrame {
                                         .addComponent(shedule12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox1)
+                                        .addComponent(check1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sheduleTeacher11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sheduleTeacher12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sheduleTeacher21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sheduleTeacher22, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(sheduleTeacherLName11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sheduleTeacherLName12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sheduleTeacherLName21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sheduleTeacherLName22, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -345,20 +380,20 @@ public class Form extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel16)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox5)
+                                    .addComponent(check5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(shedule51, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(sheduleTeacher51, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sheduleTeacher52, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(sheduleTeacherLName51, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sheduleTeacherLName52, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(shedule42, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel15)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox4)
+                                    .addComponent(check4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(shedule41, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -369,15 +404,15 @@ public class Form extends javax.swing.JFrame {
                                             .addComponent(shedule32, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jCheckBox3)
+                                            .addComponent(check3)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(shedule31, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(sheduleTeacher31, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sheduleTeacher32, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sheduleTeacher41, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sheduleTeacher42, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(sheduleTeacherLName31, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sheduleTeacherLName32, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sheduleTeacherLName41, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sheduleTeacherLName42, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jButton8))
                 .addContainerGap(582, Short.MAX_VALUE))
         );
@@ -396,48 +431,48 @@ public class Form extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(shedule11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sheduleTeacher11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1))
+                            .addComponent(sheduleTeacherLName11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(check1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(shedule12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sheduleTeacher12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sheduleTeacherLName12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(shedule21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel13)
-                                .addComponent(jCheckBox2)))
+                                .addComponent(check2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(shedule22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(sheduleTeacher21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sheduleTeacherLName21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sheduleTeacher22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sheduleTeacherLName22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(shedule31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sheduleTeacher31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox3))
+                            .addComponent(sheduleTeacherLName31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(check3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(shedule32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sheduleTeacher32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sheduleTeacherLName32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(shedule41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel15)
-                                .addComponent(jCheckBox4)))
+                                .addComponent(check4)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(shedule42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(sheduleTeacher41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sheduleTeacherLName41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sheduleTeacher42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sheduleTeacherLName42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -445,13 +480,13 @@ public class Form extends javax.swing.JFrame {
                             .addComponent(shedule51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel16)
-                                .addComponent(jCheckBox5)))
+                                .addComponent(check5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(shedule52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(sheduleTeacher51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sheduleTeacherLName51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sheduleTeacher52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sheduleTeacherLName52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton8)
                 .addContainerGap())
@@ -1041,6 +1076,26 @@ public class Form extends javax.swing.JFrame {
         new Shedule(this).setDiscipline(9);
     }//GEN-LAST:event_shedule52ActionPerformed
 
+    private void check1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check1ActionPerformed
+        new Shedule(this).setTotalLesson(0);
+    }//GEN-LAST:event_check1ActionPerformed
+
+    private void check2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check2ActionPerformed
+        new Shedule(this).setTotalLesson(1);
+    }//GEN-LAST:event_check2ActionPerformed
+
+    private void check3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check3ActionPerformed
+        new Shedule(this).setTotalLesson(2);
+    }//GEN-LAST:event_check3ActionPerformed
+
+    private void check4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check4ActionPerformed
+        new Shedule(this).setTotalLesson(3);
+    }//GEN-LAST:event_check4ActionPerformed
+
+    private void check5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check5ActionPerformed
+        new Shedule(this).setTotalLesson(4);
+    }//GEN-LAST:event_check5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1049,6 +1104,11 @@ public class Form extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDisciplineButton;
     private javax.swing.JButton addTeacher;
+    public javax.swing.JCheckBox check1;
+    public javax.swing.JCheckBox check2;
+    public javax.swing.JCheckBox check3;
+    public javax.swing.JCheckBox check4;
+    public javax.swing.JCheckBox check5;
     public javax.swing.JTextField codeSpec;
     public javax.swing.JComboBox comboDiscipline;
     public javax.swing.JComboBox comboFName;
@@ -1068,11 +1128,6 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1126,16 +1181,16 @@ public class Form extends javax.swing.JFrame {
     public javax.swing.JComboBox shedule42;
     public javax.swing.JComboBox shedule51;
     public javax.swing.JComboBox shedule52;
-    public javax.swing.JComboBox sheduleTeacher11;
-    public javax.swing.JComboBox sheduleTeacher12;
-    public javax.swing.JComboBox sheduleTeacher21;
-    public javax.swing.JComboBox sheduleTeacher22;
-    public javax.swing.JComboBox sheduleTeacher31;
-    public javax.swing.JComboBox sheduleTeacher32;
-    public javax.swing.JComboBox sheduleTeacher41;
-    public javax.swing.JComboBox sheduleTeacher42;
-    public javax.swing.JComboBox sheduleTeacher51;
-    public javax.swing.JComboBox sheduleTeacher52;
+    public javax.swing.JComboBox sheduleTeacherLName11;
+    public javax.swing.JComboBox sheduleTeacherLName12;
+    public javax.swing.JComboBox sheduleTeacherLName21;
+    public javax.swing.JComboBox sheduleTeacherLName22;
+    public javax.swing.JComboBox sheduleTeacherLName31;
+    public javax.swing.JComboBox sheduleTeacherLName32;
+    public javax.swing.JComboBox sheduleTeacherLName41;
+    public javax.swing.JComboBox sheduleTeacherLName42;
+    public javax.swing.JComboBox sheduleTeacherLName51;
+    public javax.swing.JComboBox sheduleTeacherLName52;
     private javax.swing.JLabel Имя;
     private javax.swing.JLabel Отчество;
     private javax.swing.JLabel Фамилия;
