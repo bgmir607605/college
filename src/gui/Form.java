@@ -7,13 +7,16 @@
 package gui;
 
 import java.io.IOException;
-import model.MyTable;
-import model.DB;
-import tabs.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import jxl.write.WriteException;
+import model.DB;
+import model.LoadsForGroup;
+import model.MyTable;
+import tabs.*;
 
 /**
  *
@@ -24,10 +27,77 @@ public class Form extends javax.swing.JFrame {
     /**
      * Creates new form Form
      */
+    JComboBox[] arrComboDiscipline = new JComboBox[10];
+    JComboBox[] arrCombolName = new JComboBox[10];
+    JCheckBox[] arrCheck = new JCheckBox[5];
+    static LoadsForGroup loads = null;
     public Form() {
         initComponents();
+        initArrsOfCombo();
         refTab();
         this.setVisible(true);
+    }
+    public void setGroupShedule(String[] arr){
+        //Очистить комбобоксы с названиями дисциплин
+        for (int i = 0; i < arrComboDiscipline.length; i++){
+            arrComboDiscipline[i].removeAllItems();
+        }
+        //Добавить названия дисциплин в комбобоксы
+        for (int i = 0; i < arr.length; i++){
+            for (int k = 0; k < arrComboDiscipline.length; k++){
+            arrComboDiscipline[k].addItem(arr[i]);
+            }
+        }
+        //Установить по умолчанию "окна"
+        for (int i = 0; i < arrComboDiscipline.length; i++){
+            arrComboDiscipline[i].setSelectedIndex(-1);
+        }
+    }
+    public void initArrsOfCombo(){
+        arrComboDiscipline[0] = shedule11;
+        arrComboDiscipline[1] = shedule12;
+        arrComboDiscipline[2] = shedule21;
+        arrComboDiscipline[3] = shedule22;
+        arrComboDiscipline[4] = shedule31;
+        arrComboDiscipline[5] = shedule32;
+        arrComboDiscipline[6] = shedule41;
+        arrComboDiscipline[7] = shedule42;
+        arrComboDiscipline[8] = shedule51;
+        arrComboDiscipline[9] = shedule52;
+        
+        arrCombolName[0] = sheduleTeacherLName11;
+        arrCombolName[1] = sheduleTeacherLName12;
+        arrCombolName[2] = sheduleTeacherLName21;
+        arrCombolName[3] = sheduleTeacherLName22;
+        arrCombolName[4] = sheduleTeacherLName31;
+        arrCombolName[5] = sheduleTeacherLName32;
+        arrCombolName[6] = sheduleTeacherLName41;
+        arrCombolName[7] = sheduleTeacherLName42;
+        arrCombolName[8] = sheduleTeacherLName51;
+        arrCombolName[9] = sheduleTeacherLName52;
+        
+        arrCheck[0] = check1;
+        arrCheck[1] = check2;
+        arrCheck[2] = check3;
+        arrCheck[3] = check4;
+        arrCheck[4] = check5;
+    }
+    public void setTotalLesson(int x){
+        if (arrCheck[x].isSelected()){
+            arrComboDiscipline[x + x + 1].setEnabled(false);
+        }
+        else{
+            arrComboDiscipline[x + x + 1].setEnabled(true);
+        }
+        
+    }
+    public void setDisciplineLesson(int x){
+        arrCombolName[x].removeAllItems();
+        String[] lNames = loads.getArrTeacherForDiscipline((String)arrComboDiscipline[x].getSelectedItem());
+        for (int i = 0; i < lNames.length; i++){
+            arrCombolName[x].addItem(lNames[i]);
+        }
+                
     }
     public void refTab(){
         jTable1.setModel(new MyTable("teachers"));
@@ -35,11 +105,6 @@ public class Form extends javax.swing.JFrame {
         jTable3.setModel(new MyTable("specialty"));
         jTable4.setModel(new MyTable("groups"));
         jTable5.setModel(new MyTable("teacherLoad"));
-        
-        getLFMNameList();
-        getSpecialtyList();
-        getDisciplineList();
-        System.out.println("Форма обновлена");
     }
     
     void getSpecialtyList(){
@@ -1025,7 +1090,10 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void groupSheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupSheduleActionPerformed
-        new Shedule(this).setGroup();
+        loads = new LoadsForGroup(this);
+        loads.setGroupId((String) groupShedule.getSelectedItem());
+        loads.getArrLoads();
+        loads.setDisciplines();
     }//GEN-LAST:event_groupSheduleActionPerformed
 
     private void groupShedulePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_groupShedulePopupMenuWillBecomeVisible
@@ -1033,67 +1101,67 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_groupShedulePopupMenuWillBecomeVisible
 
     private void shedule11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule11ActionPerformed
-        new Shedule(this).setDiscipline(0);
+        setDisciplineLesson(0);
     }//GEN-LAST:event_shedule11ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        new Shedule(this).addShedule();
+        //new Shedule(this).addShedule();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void shedule21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule21ActionPerformed
-        new Shedule(this).setDiscipline(2);
+        setDisciplineLesson(2);
     }//GEN-LAST:event_shedule21ActionPerformed
 
     private void shedule31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule31ActionPerformed
-        new Shedule(this).setDiscipline(4);
+        setDisciplineLesson(4);
     }//GEN-LAST:event_shedule31ActionPerformed
 
     private void shedule41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule41ActionPerformed
-        new Shedule(this).setDiscipline(6);
+        setDisciplineLesson(6);
     }//GEN-LAST:event_shedule41ActionPerformed
 
     private void shedule51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule51ActionPerformed
-        new Shedule(this).setDiscipline(8);
+        setDisciplineLesson(8);
     }//GEN-LAST:event_shedule51ActionPerformed
 
     private void shedule12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule12ActionPerformed
-        new Shedule(this).setDiscipline(1);
+        setDisciplineLesson(1);
     }//GEN-LAST:event_shedule12ActionPerformed
 
     private void shedule22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule22ActionPerformed
-        new Shedule(this).setDiscipline(3);
+        setDisciplineLesson(3);
     }//GEN-LAST:event_shedule22ActionPerformed
 
     private void shedule32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule32ActionPerformed
-        new Shedule(this).setDiscipline(5);
+        setDisciplineLesson(5);
     }//GEN-LAST:event_shedule32ActionPerformed
 
     private void shedule42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule42ActionPerformed
-        new Shedule(this).setDiscipline(7);
+        setDisciplineLesson(7);
     }//GEN-LAST:event_shedule42ActionPerformed
 
     private void shedule52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule52ActionPerformed
-        new Shedule(this).setDiscipline(9);
+        setDisciplineLesson(9);
     }//GEN-LAST:event_shedule52ActionPerformed
 
     private void check1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check1ActionPerformed
-        new Shedule(this).setTotalLesson(0);
+        setTotalLesson(0);
     }//GEN-LAST:event_check1ActionPerformed
 
     private void check2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check2ActionPerformed
-        new Shedule(this).setTotalLesson(1);
+        setTotalLesson(1);
     }//GEN-LAST:event_check2ActionPerformed
 
     private void check3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check3ActionPerformed
-        new Shedule(this).setTotalLesson(2);
+        setTotalLesson(2);
     }//GEN-LAST:event_check3ActionPerformed
 
     private void check4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check4ActionPerformed
-        new Shedule(this).setTotalLesson(3);
+        setTotalLesson(3);
     }//GEN-LAST:event_check4ActionPerformed
 
     private void check5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check5ActionPerformed
-        new Shedule(this).setTotalLesson(4);
+        setTotalLesson(4);
     }//GEN-LAST:event_check5ActionPerformed
 
     /**

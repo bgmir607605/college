@@ -167,6 +167,26 @@ public class DB {
         return arr;
     }
     
+    public String getGroupId(String n){
+        String id = null;
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);   
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select id from groups where name ='" + n + "';");
+            while (rs.next()){
+                id = rs.getString(1);
+            }          
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally {closeCon();}
+        return id;
+    }
+    
     //Получить список для КомбоБоксов с условием
     public String[] getBoxList(String f, String t, String w){
         String[] arr = null;
