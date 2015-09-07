@@ -22,6 +22,9 @@ public class LoadsForGroup {
     public void setGroupId(String nameGroup){
         groupId = new DB().getGroupId(nameGroup);
     }
+    public String getGroupId(){
+        return groupId;
+    }
     public void getArrLoads(){
         arrLoads = new DB().getTab("teacherLoad", "groupId = '" + groupId + "'");
     }

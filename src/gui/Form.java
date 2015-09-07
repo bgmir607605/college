@@ -37,6 +37,18 @@ public class Form extends javax.swing.JFrame {
         refTab();
         this.setVisible(true);
     }
+    public boolean getValueCheck(int i){
+        return arrCheck[i].isSelected();
+    }
+    public String getValueComboDiscipline(int i){
+        return (String) arrComboDiscipline[i].getSelectedItem();
+    }
+    public boolean isNotEmptyLesson(int i){
+        return arrComboDiscipline[i].getSelectedIndex() != -1;
+    }
+    public String getValueCombolName(int i){
+        return (String) arrCombolName[i].getSelectedItem();
+    }
     public void setGroupShedule(String[] arr){
         //Очистить комбобоксы с названиями дисциплин
         for (int i = 0; i < arrComboDiscipline.length; i++){
@@ -1105,7 +1117,7 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_shedule11ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        //new Shedule(this).addShedule();
+        new Shedule(this, loads.getGroupId()).addShedule();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void shedule21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule21ActionPerformed
