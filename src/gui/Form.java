@@ -8,6 +8,8 @@ package gui;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
@@ -35,7 +37,29 @@ public class Form extends javax.swing.JFrame {
         initComponents();
         initArrsOfCombo();
         refTab();
+        initDate();
+        getLFMNameList();
+        getDisciplineList();
         this.setVisible(true);
+    }
+    public void initDate(){
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = null;
+        String y;
+        int i;
+        dateFormat = new SimpleDateFormat("dd");
+        y = dateFormat.format( currentDate );
+        i = Integer.parseInt(y);
+        jSpinner1.setValue(i);
+        dateFormat = new SimpleDateFormat("MM");
+        y = dateFormat.format( currentDate );
+        i = Integer.parseInt(y);
+        jSpinner2.setValue(i);
+        dateFormat = new SimpleDateFormat("y");
+        y = dateFormat.format( currentDate );
+        i = Integer.parseInt(y);
+        jSpinner3.setValue(i);
+
     }
     public boolean getValueCheck(int i){
         return arrCheck[i].isSelected();
@@ -117,6 +141,30 @@ public class Form extends javax.swing.JFrame {
         jTable3.setModel(new MyTable("specialty"));
         jTable4.setModel(new MyTable("groups"));
         jTable5.setModel(new MyTable("teacherLoad"));
+    }
+    public String getDate(){
+        String s = "";
+        String ts = "" + jSpinner3.getValue();
+        int t = Integer.parseInt(ts);
+        s = s + t + "-";
+        ts = "" + jSpinner2.getValue();
+        t = Integer.parseInt(ts);
+        if (t < 10){
+            s = s + "0" + t;
+        }
+        else {
+            s = s + t;
+        }
+        s = s + "-";
+        ts = "" + jSpinner1.getValue();
+        t = Integer.parseInt(ts);
+        if (t < 10){
+            s = s + "0" + t;
+        }
+        else {
+            s = s + t;
+        }
+        return s;
     }
     
     void getSpecialtyList(){
@@ -212,6 +260,9 @@ public class Form extends javax.swing.JFrame {
         sheduleTeacherLName51 = new javax.swing.JComboBox();
         sheduleTeacherLName52 = new javax.swing.JComboBox();
         shedule52 = new javax.swing.JComboBox();
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
+        jSpinner3 = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -412,6 +463,8 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        jSpinner1.setToolTipText("");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -419,11 +472,6 @@ public class Form extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(groupShedule, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(shedule22, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -490,7 +538,20 @@ public class Form extends javax.swing.JFrame {
                                 .addComponent(sheduleTeacherLName32, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(sheduleTeacherLName41, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(sheduleTeacherLName42, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jButton8))
+                    .addComponent(jButton8)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(groupShedule, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(582, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -501,7 +562,11 @@ public class Form extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(groupShedule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -664,7 +729,7 @@ public class Form extends javax.swing.JFrame {
                     .addComponent(comboDiscipline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -686,6 +751,16 @@ public class Form extends javax.swing.JFrame {
             }
         ));
         jScrollPane4.setViewportView(jTable4);
+
+        nameSpecOfGroup.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                nameSpecOfGroupPopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         jLabel8.setText("Группа");
 
@@ -751,7 +826,7 @@ public class Form extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton6))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Группы", jPanel3);
@@ -826,7 +901,7 @@ public class Form extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Специальности", jPanel4);
@@ -904,7 +979,7 @@ public class Form extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Дисциплины", jPanel5);
@@ -1001,7 +1076,7 @@ public class Form extends javax.swing.JFrame {
                     .addComponent(addTeacher)
                     .addComponent(editTeacher)
                     .addComponent(delTeacher))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Преподаватели", jPanel6);
@@ -1176,6 +1251,10 @@ public class Form extends javax.swing.JFrame {
         setTotalLesson(4);
     }//GEN-LAST:event_check5ActionPerformed
 
+    private void nameSpecOfGroupPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_nameSpecOfGroupPopupMenuWillBecomeVisible
+        getSpecialtyList();
+    }//GEN-LAST:event_nameSpecOfGroupPopupMenuWillBecomeVisible
+
     /**
      * @param args the command line arguments
      */
@@ -1239,6 +1318,9 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable jTable1;
     public javax.swing.JTable jTable2;

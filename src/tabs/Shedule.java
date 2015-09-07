@@ -30,10 +30,9 @@ public class Shedule {
     public void addShedule(){
         initArrToInsert();
         String quary = "INSERT INTO shedule (`date`, `number`, `type`, `teacherLoadId`, `h`) VALUES ";
-        String date = "2015-09-07";
+        String date = form.getDate();
         for (int i = 0; i < arrToInsert.length - 1; i++){
             if (arrToInsert[i][0] != null){
-                System.out.println("1");
                 quary = quary + "('" + date + "', '" + arrToInsert[i][0] + "', '" + arrToInsert[i][1] + "', (select id from teacherLoad where teacherId = (select id from teachers where lName = '" + arrToInsert[i][3] + "') and groupId = '" + groupId +"' and disciplineId = (select id from discipline where shortName = '" + arrToInsert[i][2] + "')), '2'), ";
             }
         }
