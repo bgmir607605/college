@@ -17,21 +17,21 @@ import model.DB;
  */
 public class Group {
     Form form;
-    String nG, nS, idS;
+    String nameGroup, nameSpecialty, idSpecialty;
     public Group(Form form){
         this.form = form;
     }
     public void addGroup(){
-        nG = form.nameGroup.getText();
-        nS = (String) form.nameSpecOfGroup.getSelectedItem();
-        if (Checks.notEmpGroup(nG, nS)){    
+        //nameGroup = form.nameGroup.getText();
+        //nameSpecialty = (String) form.nameSpecOfGroup.getSelectedItem();
+        if (Checks.notEmpGroup(nameGroup, nameSpecialty)){    
         try {
-                new DB().ins("INSERT INTO groups (name, specialtyId) values('"+ nG + "', (select id from specialty where name = '" + nS + "'));");
+                new DB().ins("INSERT INTO groups (name, specialtyId) values('"+ nameGroup + "', (select id from specialty where name = '" + nameSpecialty + "'));");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
-        form.nameGroup.setText(null);
-        form.nameSpecOfGroup.setSelectedItem(null);
+        //form.nameGroup.setText(null);
+        //form.nameSpecOfGroup.setSelectedItem(null);
         form.refTab();
         }
     }
@@ -41,10 +41,10 @@ public class Group {
          * 
          * 
          */ 
-        int sr = form.jTable4.getSelectedRow();
-        nG = (String) form.jTable4.getValueAt(sr, 0);
+        //int sr = form.jTable4.getSelectedRow();
+        //nameGroup = (String) form.jTable4.getValueAt(sr, 0);
         try {
-            new DB().del("groups", "name = '" + nG + "'");
+            new DB().del("groups", "name = '" + nameGroup + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }

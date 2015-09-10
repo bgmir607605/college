@@ -5,17 +5,18 @@
  */
 
 package gui;
-import model.DB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import model.DB;
+import tabs.Teacher;
 /**
  *
  * @author Andrey
  */
 public class EditForm extends javax.swing.JFrame {
-    Form ob;
+    Teacher panel;
     String oldLName;
     String oldFName;
     String oldMName;
@@ -27,8 +28,8 @@ public class EditForm extends javax.swing.JFrame {
     /**
      * Creates new form EditForm
      */
-    public EditForm(Form form, String ln, String fn, String mn) {
-        ob = form;
+    public EditForm(JPanel panel, String ln, String fn, String mn) {
+        panel = panel;
         oldLName = ln;
         oldFName = fn;
         oldMName = mn;
@@ -102,7 +103,6 @@ public class EditForm extends javax.swing.JFrame {
                 Logger.getLogger(EditForm.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.setVisible(false);
-            ob.refTab();
         }
         
         

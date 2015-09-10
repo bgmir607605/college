@@ -19,22 +19,22 @@ import model.DB;
  */
 public class Specialty {
     Form form;
-    String c, n;
+    String codeSpecialty, nameSpecialty;
     public Specialty(Form form){
         this.form = form;
     }
     public void addSpecialty(){
-        c = form.codeSpec.getText();
-        n = form.nameSpec.getText();
-        if (Checks.notEmpDiscipline(c, n)){
+        //codeSpecialty = form.codeSpec.getText();
+        //nameSpecialty = form.nameSpec.getText();
+        if (Checks.notEmpDiscipline(codeSpecialty, nameSpecialty)){
             try {
-                new DB().ins("INSERT INTO specialty (code, name) values('"+ c + "', '" + n + "');");
+                new DB().ins("INSERT INTO specialty (code, name) values('"+ codeSpecialty + "', '" + nameSpecialty + "');");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-            form.codeSpec.setText(null);
-            form.nameSpec.setText(null);
+            //form.codeSpec.setText(null);
+            //form.nameSpec.setText(null);
             form.refTab();
         }
         
@@ -45,11 +45,11 @@ public class Specialty {
          * 
          * 
          */ 
-        int sr = form.jTable3.getSelectedRow();
-        c = (String) form.jTable3.getValueAt(sr, 0);
-        n = (String) form.jTable3.getValueAt(sr, 1);
+        //int sr = form.jTable3.getSelectedRow();
+        //codeSpecialty = (String) form.jTable3.getValueAt(sr, 0);
+        //nameSpecialty = (String) form.jTable3.getValueAt(sr, 1);
         try {
-            new DB().del("specialty", "code = '" + c + "' and name = '" + n + "'");
+            new DB().del("specialty", "code = '" + codeSpecialty + "' and name = '" + nameSpecialty + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }

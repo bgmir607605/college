@@ -17,22 +17,22 @@ import model.DB;
  */
 public class Discipline {
     Form form;
-    String s, f;
+    String shortName, fullName;
     public Discipline (Form form){
         this.form = form;
     }
     public void addDiscipline(){
-        s = form.sName.getText();
-        f = form.fName.getText();
-        if (Checks.notEmpDiscipline(s, f)){
+        //shortName = form.sName.getText();
+        //fullName = form.fName.getText();
+        if (Checks.notEmpDiscipline(shortName, fullName)){
             try {
-                new DB().ins("INSERT INTO discipline (shortName, fullName) values('"+ s + "', '" + f + "');");
+                new DB().ins("INSERT INTO discipline (shortName, fullName) values('"+ shortName + "', '" + fullName + "');");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-            form.sName.setText(null);
-            form.fName.setText(null);
+            //form.sName.setText(null);
+            //form.fName.setText(null);
             form.refTab();
         }
         
@@ -43,11 +43,11 @@ public class Discipline {
          * 
          * 
          */ 
-        int sr = form.jTable2.getSelectedRow();
-        s = (String) form.jTable2.getValueAt(sr, 0);
-        f = (String) form.jTable2.getValueAt(sr, 1);
+       // int sr = form.jTable2.getSelectedRow();
+        //shortName = (String) form.jTable2.getValueAt(sr, 0);
+        //fullName = (String) form.jTable2.getValueAt(sr, 1);
         try {
-            new DB().del("discipline", "shortName = '" + s + "' and fullName = '" + f + "'");
+            new DB().del("discipline", "shortName = '" + shortName + "' and fullName = '" + fullName + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
