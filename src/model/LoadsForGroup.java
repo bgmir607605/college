@@ -7,17 +7,18 @@
 package model;
 
 import gui.Form;
+import tabs.Shedule;
 
 /**
  *
  * @author aamir
  */
 public class LoadsForGroup {
-    Form form;
+    Shedule tab;
     String[][] arrLoads;
     static String groupId;
-    public LoadsForGroup(Form form){
-        this.form = form;
+    public LoadsForGroup(Shedule tab){
+        this.tab = this.tab;
     }
     public void setGroupId(String nameGroup){
         groupId = new DB().getGroupId(nameGroup);
@@ -25,7 +26,7 @@ public class LoadsForGroup {
     public String getGroupId(){
         return groupId;
     }
-    public void getArrLoads(){
+    public void setArrLoads(){
         arrLoads = new DB().getTab("teacherLoad", "groupId = '" + groupId + "'");
     }
     public String[] getArrDisciplines(){
@@ -35,11 +36,7 @@ public class LoadsForGroup {
             }
         return arr;
     }
-    public void setDisciplines(){
-        form.setGroupShedule(getArrDisciplines());
-    }
-   
-    
+
     public String[] getArrTeacherForDiscipline(String discipline){
         //Посчитать размер возвращаемого массива (Количество нахождений дисциплины)
         int length = 0;

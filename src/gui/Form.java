@@ -34,7 +34,7 @@ public class Form extends javax.swing.JFrame {
     
     public Form() {
         initComponents();
-        jTabbedPane1.insertTab("Расписание", null, new SheduleTab(), null, 0);
+        jTabbedPane1.insertTab("Расписание", null, new Shedule(), null, 0);
         jTabbedPane1.insertTab("Преподаватели", null, new Teacher(), null, 5);
 
         refTab();
