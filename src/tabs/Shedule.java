@@ -35,6 +35,7 @@ public class Shedule extends javax.swing.JPanel {
     public Shedule() {
         initComponents();
         initArrsOfCombo();
+        initDate();
     }
     
     /**
