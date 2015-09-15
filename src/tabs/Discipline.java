@@ -158,11 +158,11 @@ public class Discipline extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addDisciplineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDisciplineButtonActionPerformed
-        //new Discipline(this).addDiscipline();
+        addDiscipline();
     }//GEN-LAST:event_addDisciplineButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //new Discipline(this).delDiscipline();
+        delDiscipline();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
