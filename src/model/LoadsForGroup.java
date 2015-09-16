@@ -6,6 +6,8 @@
 
 package model;
 
+import DB.MainDB;
+import DB.SheduleDB;
 import gui.Form;
 import tabs.Shedule;
 
@@ -16,43 +18,66 @@ import tabs.Shedule;
 public class LoadsForGroup {
     Shedule tab;
     String[][] arrLoads;
+    String[][] arrTeachers;
+    String[][] arrDisciplines;
     static String groupId;
     public LoadsForGroup(Shedule tab){
-        this.tab = this.tab;
+        this.tab = tab;
     }
     public void setGroupId(String nameGroup){
-        groupId = new DB().getGroupId(nameGroup);
+        groupId = new SheduleDB().getGroupId(nameGroup);
     }
     public String getGroupId(){
         return groupId;
     }
     public void setArrLoads(){
-        arrLoads = new DB().getTab("teacherLoad", "groupId = '" + groupId + "'");
+        arrLoads = new SheduleDB().getArrLoads(groupId);
+    }
+    public void setArrTeachers(){
+        arrTeachers = new SheduleDB().getArrTeachers(arrLoads);
+    }
+    public void setArrDisciplines(){
+        arrDisciplines = new SheduleDB().getArrDisciplines(arrLoads);
     }
     public String[] getArrDisciplines(){
-        String[] arr = new String[arrLoads.length];
-        for (int k = 0; k < arrLoads.length; k++){
-            arr[k] = arrLoads[k][3];
+        String[] arr = new String[arrDisciplines.length];
+        for (int k = 0; k < arrDisciplines.length; k++){
+            arr[k] = arrDisciplines[k][1];
             }
         return arr;
     }
 
     public String[] getArrTeacherForDiscipline(String discipline){
-        //Посчитать размер возвращаемого массива (Количество нахождений дисциплины)
+        //По названию дисциплины узнать id
+        String disciplineId = null;
+        for (int i = 0; i < arrDisciplines.length; i++){
+                    if (arrDisciplines[i][1].equals(discipline)){
+                        disciplineId = arrDisciplines[i][0];
+                    }
+            }
+        //В каких нагрузках есть эта дисциплина - считаем количество
         int length = 0;
         for (int i = 0; i < arrLoads.length; i++){
-                    if (arrLoads[i][3].equals(discipline)){
+                    if (arrLoads[i][2].equals(disciplineId)){
                         length++;
                     }
             }
-        //Сформировать возвращаемый массив
         String[] arrOut = new String[length];
+        //Заполнить 
         int j = 0;
         for (int i = 0; i < arrLoads.length; i++){
-                    if (arrLoads[i][3].equals(discipline)){
-                        arrOut[j] = arrLoads[i][0];
+                    if (arrLoads[i][2].equals(disciplineId)){
+                        arrOut[j] = arrLoads[i][1];
                         j++;
                     }
+        }
+        for (int i = 0; i < arrOut.length; i++){
+            for (int k = 0; k < arrTeachers.length; k++){
+                if (arrOut[i].equals(arrTeachers[k][0])){
+                        arrOut[i] = arrTeachers[k][3];
+                    }
+            }
+                    
         }
         return arrOut;
     }

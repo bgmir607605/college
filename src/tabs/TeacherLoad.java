@@ -11,7 +11,7 @@ import gui.Form;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DB;
+import DB.MainDB;
 import model.MyTable;
 
 /**
@@ -40,7 +40,7 @@ public class TeacherLoad extends javax.swing.JPanel {
         //discipline = (String) form.comboDiscipline.getSelectedItem();
         if (Checks.notEmpTeacher(lName, fName, mName)){    
         try {
-                new DB().ins("insert into teacherLoad (teacherId, groupId, disciplineId)" +
+                new MainDB().ins("insert into teacherLoad (teacherId, groupId, disciplineId)" +
                         "values ((select id from teachers where lName ='" + lName + "' and fName ='" + fName + "' " +
                         "and mName ='" + mName + "'), (select id from groups where name ='" + group + "'), " +
                         "(select id from discipline where shortName ='" + discipline + "'));");
@@ -69,7 +69,7 @@ public class TeacherLoad extends javax.swing.JPanel {
         //discipline = (String) form.jTable5.getValueAt(sr, 4);
         
         try {
-            new DB().del("teacherLoad", "teacherId = (select id from teachers where fName = '" + fName + "' and lName = '" + lName + "' and mName = '" + mName + "') and groupId = (select id from groups where name = '" + group + "') and disciplineId = (select id from discipline where shortName = '" + discipline + "')");
+            new MainDB().del("teacherLoad", "teacherId = (select id from teachers where fName = '" + fName + "' and lName = '" + lName + "' and mName = '" + mName + "') and groupId = (select id from groups where name = '" + group + "') and disciplineId = (select id from discipline where shortName = '" + discipline + "')");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +80,7 @@ public class TeacherLoad extends javax.swing.JPanel {
         comboLName.removeAllItems();
         comboFName.removeAllItems();
         comboMName.removeAllItems();
-        DB d = new DB();
+        MainDB d = new MainDB();
         String[] a = d.getBoxList("lName", "teachers");
         for (int i = 0; i < a.length; i++){
             comboLName.addItem(a[i]);
@@ -97,7 +97,7 @@ public class TeacherLoad extends javax.swing.JPanel {
     }
     void getDisciplineList(){
         comboDiscipline.removeAllItems();
-        DB d = new DB();
+        MainDB d = new MainDB();
         String[] a = d.getBoxList("shortName", "discipline");
         for (int i = 0; i < a.length; i++){
             comboDiscipline.addItem(a[i]);

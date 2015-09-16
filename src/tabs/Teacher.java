@@ -12,7 +12,7 @@ import gui.Form;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DB;
+import DB.MainDB;
 import model.MyTable;
 
 /**
@@ -148,7 +148,7 @@ public class Teacher extends javax.swing.JPanel {
         mName = mNameTeacher.getText();
         if (Checks.notEmpTeacher(lName, fName, mName)){    
         try {
-                new DB().ins("INSERT INTO teachers (fName, mName, lName) values('"+ fName + "', '"+ mName + "', '" + lName + "');");
+                new MainDB().ins("INSERT INTO teachers (fName, mName, lName) values('"+ fName + "', '"+ mName + "', '" + lName + "');");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -169,7 +169,7 @@ public class Teacher extends javax.swing.JPanel {
         fName = (String) jTable1.getValueAt(sr, 1);
         mName = (String) jTable1.getValueAt(sr, 2);
         try {
-            new DB().del("teachers", "lName = '" + lName + "' and fName = '" + fName + "' and mName = '" + mName + "'");
+            new MainDB().del("teachers", "lName = '" + lName + "' and fName = '" + fName + "' and mName = '" + mName + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -11,7 +11,7 @@ import gui.Form;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DB;
+import DB.MainDB;
 import model.MyTable;
 
 /**
@@ -36,7 +36,7 @@ public class Group extends javax.swing.JPanel {
         //nameSpecialty = (String) form.nameSpecOfGroup.getSelectedItem();
         if (Checks.notEmpGroup(nameGroup, nameSpecialty)){    
         try {
-                new DB().ins("INSERT INTO groups (name, specialtyId) values('"+ nameGroup + "', (select id from specialty where name = '" + nameSpecialty + "'));");
+                new MainDB().ins("INSERT INTO groups (name, specialtyId) values('"+ nameGroup + "', (select id from specialty where name = '" + nameSpecialty + "'));");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -54,7 +54,7 @@ public class Group extends javax.swing.JPanel {
         //int sr = form.jTable4.getSelectedRow();
         //nameGroup = (String) form.jTable4.getValueAt(sr, 0);
         try {
-            new DB().del("groups", "name = '" + nameGroup + "'");
+            new MainDB().del("groups", "name = '" + nameGroup + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,7 +62,7 @@ public class Group extends javax.swing.JPanel {
     }
     void getSpecialtyList(){
         nameSpecOfGroup.removeAllItems();
-        DB d = new DB();
+        MainDB d = new MainDB();
         String[] a = d.getBoxList("name", "specialty");
         for (int i = 0; i < a.length; i++){
             nameSpecOfGroup.addItem(a[i]);

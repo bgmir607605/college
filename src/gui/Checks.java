@@ -6,7 +6,7 @@
 
 package gui;
 
-import model.DB;
+import DB.MainDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
@@ -73,7 +73,7 @@ public class Checks {
      
     //Проверка подключения к БД
     public static boolean testConnect(){
-        return DB.test();
+        return MainDB.test();
     }
     
 }

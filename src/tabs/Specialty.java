@@ -11,7 +11,7 @@ import gui.Form;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DB;
+import DB.MainDB;
 import model.MyTable;
 
 /**
@@ -37,7 +37,7 @@ public class Specialty extends javax.swing.JPanel {
         //nameSpecialty = form.nameSpec.getText();
         if (Checks.notEmpDiscipline(codeSpecialty, nameSpecialty)){
             try {
-                new DB().ins("INSERT INTO specialty (code, name) values('"+ codeSpecialty + "', '" + nameSpecialty + "');");
+                new MainDB().ins("INSERT INTO specialty (code, name) values('"+ codeSpecialty + "', '" + nameSpecialty + "');");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -58,7 +58,7 @@ public class Specialty extends javax.swing.JPanel {
         //codeSpecialty = (String) form.jTable3.getValueAt(sr, 0);
         //nameSpecialty = (String) form.jTable3.getValueAt(sr, 1);
         try {
-            new DB().del("specialty", "code = '" + codeSpecialty + "' and name = '" + nameSpecialty + "'");
+            new MainDB().del("specialty", "code = '" + codeSpecialty + "' and name = '" + nameSpecialty + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -11,7 +11,7 @@ import gui.Form;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DB;
+import DB.MainDB;
 import model.MyTable;
 
 /**
@@ -36,7 +36,7 @@ public class Discipline extends javax.swing.JPanel {
         //fullName = form.fName.getText();
         if (Checks.notEmpDiscipline(shortName, fullName)){
             try {
-                new DB().ins("INSERT INTO discipline (shortName, fullName) values('"+ shortName + "', '" + fullName + "');");
+                new MainDB().ins("INSERT INTO discipline (shortName, fullName) values('"+ shortName + "', '" + fullName + "');");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -57,7 +57,7 @@ public class Discipline extends javax.swing.JPanel {
         //shortName = (String) form.jTable2.getValueAt(sr, 0);
         //fullName = (String) form.jTable2.getValueAt(sr, 1);
         try {
-            new DB().del("discipline", "shortName = '" + shortName + "' and fullName = '" + fullName + "'");
+            new MainDB().del("discipline", "shortName = '" + shortName + "' and fullName = '" + fullName + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }

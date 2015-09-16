@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package model;
+package DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,16 +16,7 @@ import java.sql.Statement;
  *
  * @author Andrey
  */
-public class DB {
-    
-    //Параметры подключения
-    static String userName = "adminBPT";
-    static String password = "13579!Aa";
-    static String url = "jdbc:mysql://188.120.245.21:3306/bpt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
-    static Connection conn = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-   
+public class MainDB extends DB {
     //Проверка подключенния
     public static boolean test(){
         try
@@ -43,17 +34,7 @@ public class DB {
         }
     }
     
-    //Закрытие соединения
-    static void closeCon(){
-        if (conn != null)
-            {
-                try
-                {
-                    conn.close ();
-                }
-                catch (Exception ex) { }
-            }
-    }
+    
         
     //Получить таблицу
     public String[][] getTab(String t){
@@ -166,27 +147,6 @@ public class DB {
         finally {closeCon();}
         return arr;
     }
-    
-    public String getGroupId(String n){
-        String id = null;
-        try
-        {       
-            Class.forName ("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection (url, userName, password);   
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("select id from groups where name ='" + n + "';");
-            while (rs.next()){
-                id = rs.getString(1);
-            }          
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        finally {closeCon();}
-        return id;
-    }
-    
     //Получить список для КомбоБоксов с условием
     public String[] getBoxList(String f, String t, String w){
         String[] arr = null;

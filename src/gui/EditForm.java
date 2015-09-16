@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import model.DB;
+import DB.MainDB;
 import tabs.Teacher;
 /**
  *
@@ -96,7 +96,7 @@ public class EditForm extends javax.swing.JFrame {
                 + "AND `fname` ='" + oldFName + "' "
                 + "AND`mname` ='" + oldMName + "';";
             System.out.println(q);
-            DB d = new DB();
+            MainDB d = new MainDB();
             try {
                 d.delUpdate(q);
             } catch (SQLException ex) {

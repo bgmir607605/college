@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import model.DB;
+import DB.MainDB;
 import model.LoadsForGroup;
 
 /**
@@ -65,7 +65,7 @@ public class Shedule extends javax.swing.JPanel {
      */
     void setGroupsBox(String[] arr){
         groupShedule.removeAllItems();
-        DB d = new DB();
+        MainDB d = new MainDB();
         String[] a = d.getBoxList("name", "groups");
         for (int i = 0; i < a.length; i++){
             groupShedule.addItem(a[i]);
@@ -79,6 +79,8 @@ public class Shedule extends javax.swing.JPanel {
         loads = new LoadsForGroup(this);
         loads.setGroupId((String) groupShedule.getSelectedItem());
         loads.setArrLoads();
+        loads.setArrTeachers();
+        loads.setArrDisciplines();
         setDisciplinesBox(loads.getArrDisciplines());
     }
     
@@ -135,7 +137,7 @@ public class Shedule extends javax.swing.JPanel {
         }
         quary = quary + ";";
         try {
-                new DB().ins(quary);
+                new MainDB().ins(quary);
                 System.out.println("row added");
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
@@ -667,7 +669,7 @@ public class Shedule extends javax.swing.JPanel {
     }//GEN-LAST:event_shedule12ActionPerformed
 
     private void groupShedulePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_groupShedulePopupMenuWillBecomeVisible
-        setGroupsBox(new DB().getBoxList("name", "groups"));
+        setGroupsBox(new MainDB().getBoxList("name", "groups"));
     }//GEN-LAST:event_groupShedulePopupMenuWillBecomeVisible
 
     private void groupSheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupSheduleActionPerformed

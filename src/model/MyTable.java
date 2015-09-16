@@ -6,7 +6,7 @@
 
 package model;
 
-import model.DB;
+import DB.MainDB;
 import javax.swing.JTable;
 
 /**
@@ -16,7 +16,7 @@ import javax.swing.JTable;
 public class MyTable extends javax.swing.table.DefaultTableModel {
     String[][]v;
     void getData(String t, String[] c){
-        DB d = new DB();
+        MainDB d = new MainDB();
         v = d.getTab(t);//получаем таблицу
         this.setColumnIdentifiers(c);//устанавливаем названия столбцов из массива
         this.setRowCount(v.length);//устанавливаем количество строк равное количеству записей в таблице
