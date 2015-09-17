@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import DB.MainDB;
+import javax.swing.JOptionPane;
 import model.LoadsForGroup;
 
 /**
@@ -26,8 +27,7 @@ public class Shedule extends javax.swing.JPanel {
     JComboBox[] arrCombolName = new JComboBox[10];
     JCheckBox[] arrCheck = new JCheckBox[5];
     static LoadsForGroup loads = null;
-    String[][] arrToInsert = new String[10][4];
-    String groupId;
+    String[][] arrToInsert = new String[10][3];
 
     /**
      * Creates new form SheduleTab
@@ -76,11 +76,7 @@ public class Shedule extends javax.swing.JPanel {
      * Выбрать группу
      */
     void selectGroup(){
-        loads = new LoadsForGroup(this);
-        loads.setGroupId((String) groupShedule.getSelectedItem());
-        loads.setArrLoads();
-        loads.setArrTeachers();
-        loads.setArrDisciplines();
+        loads = new LoadsForGroup((String) groupShedule.getSelectedItem());
         setDisciplinesBox(loads.getArrDisciplines());
     }
     
@@ -120,25 +116,22 @@ public class Shedule extends javax.swing.JPanel {
     /**
      * Добавить расписание
      */
-    public void addShedule(){
+    String getQuaryToInsert(){
         initArrToInsert();
         String quary = "INSERT INTO shedule (`date`, `number`, `type`, `teacherLoadId`, `h`) VALUES ";
         String date = getDate();
-        for (int i = 0; i < arrToInsert.length - 1; i++){
+        for (int i = 0; i < arrToInsert.length; i++){
             if (arrToInsert[i][0] != null){
-                quary = quary + "('" + date + "', '" + arrToInsert[i][0] + "', '" + arrToInsert[i][1] + "', (select id from teacherLoad where teacherId = (select id from teachers where lName = '" + arrToInsert[i][3] + "') and groupId = '" + groupId +"' and disciplineId = (select id from discipline where shortName = '" + arrToInsert[i][2] + "')), '2'), ";
+                quary = quary + "('" + date + "', '" + arrToInsert[i][0] + "', '" + arrToInsert[i][1] + "', '" + arrToInsert[i][2] + "', '2'), ";
             }
         }
-        if (arrToInsert[arrToInsert.length - 1][0] == null){
-            quary = quary.substring(0, quary.length() - 2);
-        }
-        else{
-            quary = quary + "('" + date + "', '" + arrToInsert[arrToInsert.length - 1][0] + "', '" + arrToInsert[arrToInsert.length - 1][1] + "', (select id from teacherLoad where teacherId = (select id from teachers where lName = '" + arrToInsert[arrToInsert.length - 1][3] + "') and groupId = '" + groupId +"' and disciplineId = (select id from discipline where shortName = '" + arrToInsert[arrToInsert.length - 1][2] + "')), '2')";
-        }
-        quary = quary + ";";
+        quary = quary.substring(0, quary.length() - 2) + ";";
+        return quary;
+    }
+    public void addShedule(){
         try {
-                new MainDB().ins(quary);
-                System.out.println("row added");
+                new MainDB().ins(getQuaryToInsert());
+                JOptionPane.showMessageDialog(null,"Расписание добавлено", "Сообщение системы", JOptionPane.DEFAULT_OPTION);
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -203,14 +196,12 @@ public class Shedule extends javax.swing.JPanel {
      * @param i
      * @param number
      * @param type
-     * @param discipline
-     * @param lName 
+     * @param teacherLoad
      */
     public void setValueOfArrToInsert(int i, int number, String type, Object discipline, Object lName){
         arrToInsert[i][0] = "" + ++number;
                     arrToInsert[i][1] = type;
-                    arrToInsert[i][2] = (String) discipline;
-                    arrToInsert[i][3] = (String) lName;
+                    arrToInsert[i][2] = loads.getTeacherLoadId((String)lName, (String) discipline);
     }
     
     

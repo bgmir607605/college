@@ -16,14 +16,16 @@ import tabs.Shedule;
  * @author aamir
  */
 public class LoadsForGroup {
-    Shedule tab;
+    public LoadsForGroup(String groupName){
+        setGroupId(groupName);
+        setArrLoads();
+        setArrTeachers();
+        setArrDisciplines();
+    }
     String[][] arrLoads;
     String[][] arrTeachers;
     String[][] arrDisciplines;
     static String groupId;
-    public LoadsForGroup(Shedule tab){
-        this.tab = tab;
-    }
     public void setGroupId(String nameGroup){
         groupId = new SheduleDB().getGroupId(nameGroup);
     }
@@ -46,7 +48,6 @@ public class LoadsForGroup {
             }
         return arr;
     }
-
     public String[] getArrTeacherForDiscipline(String discipline){
         //По названию дисциплины узнать id
         String disciplineId = null;
@@ -80,6 +81,40 @@ public class LoadsForGroup {
                     
         }
         return arrOut;
+    }
+    /**
+     * Получить id преподавателя по фамилии
+     * @param teacher
+     * @return 
+     */
+    public String getTeacherId(String teacher){
+        String id = null;
+        for (int i = 0; i < arrTeachers.length; i++){
+            if (arrTeachers[i][3].equals(teacher)){
+                id = arrTeachers[i][0];
+            }
+        }
+        return id;
+    }
+    public String getDisciplineId(String discipline){
+        String id = null;
+        for (int i = 0; i < arrDisciplines.length; i++){
+            if (arrDisciplines[i][1].equals(discipline)){
+                id = arrDisciplines[i][0];
+            }
+        }
+        return id;
+    }
+    public String getTeacherLoadId(String teacher, String discipline){
+        String teacherId = getTeacherId(teacher);
+        String disciplineId = getDisciplineId(discipline);
+        String id = null;
+        for (int i = 0; i < arrLoads.length; i++){
+            if (arrLoads[i][1].equals(teacherId) && arrLoads[i][2].equals(disciplineId)){
+                id = arrLoads[i][0];
+            }
+        }
+        return id;
     }
     
 }
