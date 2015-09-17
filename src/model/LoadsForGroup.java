@@ -117,4 +117,13 @@ public class LoadsForGroup {
         return id;
     }
     
+    public String getStringOfTeacherLoadsId(){
+        String s = "";
+        for (int k = 0; k < arrLoads.length; k++){
+            s = s + arrLoads[k][0] + ", ";
+            }
+        s = s.substring(0, s.length() - 2);
+        return s;
+    }
+
 }

@@ -106,9 +106,6 @@ public class SheduleDB extends DB {
             ex.printStackTrace();
         }
         finally {closeCon();}
-        for (int i = 0; i < arr.length; i++){
-            System.out.println(arr [i][0] + arr [i][1] + arr [i][2] + arr [i][3]);
-        }
         return arr;
     }
     public String[][] getArrDisciplines(String[][] arrLoads){
@@ -142,10 +139,29 @@ public class SheduleDB extends DB {
             ex.printStackTrace();
         }
         finally {closeCon();}
-        for (int i = 0; i < arr.length; i++){
-            System.out.println(arr [i][0] + arr [i][1]);
-        }
         return arr;
     }
     
+    public boolean isAvailableShedule(String teacherLoadsId, String sheduleDate){
+        boolean r = false;
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);   
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT id from shedule where teacherLoadId in (" + teacherLoadsId + ") and date ='" + sheduleDate + "';");
+            if (rs.next()){
+                r = true;
+            }
+            else{
+                r = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally {closeCon();}
+        return r;
+    }
 }
