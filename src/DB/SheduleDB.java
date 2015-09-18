@@ -164,4 +164,31 @@ public class SheduleDB extends DB {
         finally {closeCon();}
         return r;
     }
+    public String[][] getArrAvailableShedule(String teacherLoadsId, String sheduleDate){
+        String[][] arr = null;
+        try
+        {       
+            Class.forName ("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection (url, userName, password);   
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT number, type, teacherLoadId from shedule where teacherLoadId in (" + teacherLoadsId + ") and date ='" + sheduleDate + "';");
+            rs.last();
+            int m = rs.getRow();
+            rs.beforeFirst();
+            arr = new String[m][3];
+            int i = 0;
+            while (rs.next()){
+                for (int j = 1; j <= 3; j++){
+                    arr[i][--j] = rs.getString(++j);
+                }
+                i++;
+            }          
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally {closeCon();}
+        return arr;
+    }
 }

@@ -29,6 +29,11 @@ public class Shedule extends javax.swing.JPanel {
     JCheckBox[] arrCheck = new JCheckBox[5];
     static LoadsForGroup loads = null;
     String[][] arrToInsert = new String[10][3];
+    /**
+     * |   0    |  1   |     2         |
+     * | number | type | teacherLoadId |
+     */
+    String[][] AvailableShedule;
 
     /**
      * Creates new form SheduleTab
@@ -81,7 +86,35 @@ public class Shedule extends javax.swing.JPanel {
         setDisciplinesBox(loads.getArrDisciplines());
         if (new SheduleDB().isAvailableShedule(loads.getStringOfTeacherLoadsId(), getDate())){
             System.out.println("Нужно загружать имеющееся");
+            AvailableShedule = new SheduleDB().getArrAvailableShedule(loads.getStringOfTeacherLoadsId(), getDate());
+            setAvailableShedule();
         }
+    }
+    void setAvailableShedule(){
+        for (int i = 0; i < AvailableShedule.length; i++){
+            setAvailableLesson(AvailableShedule[i]);
+        }
+    }
+    void setAvailableLesson(String[] lesson){
+        int number = Integer.parseInt(lesson[0]);
+        String type = lesson[1];
+        String teacherLoadId = lesson[2];
+        if (type.equals("")){
+            arrComboDiscipline[number * 2].setSelectedItem(loads.getDisciplineOnTeacherLoadId(teacherLoadId));
+            arrCombolName[number * 2].setSelectedItem(loads.getLNameTeacherOnTeacherLoadId(teacherLoadId));
+            arrCheck[number].setSelected(true);
+        }
+        if (type.equals("I")){
+            arrComboDiscipline[number * 2].setSelectedItem(loads.getDisciplineOnTeacherLoadId(teacherLoadId));
+            arrCombolName[number * 2].setSelectedItem(loads.getLNameTeacherOnTeacherLoadId(teacherLoadId));
+            arrCheck[number].setSelected(false);
+        }
+        if (type.equals("II")){
+            arrComboDiscipline[number * 2 + 1].setSelectedItem(loads.getDisciplineOnTeacherLoadId(teacherLoadId));
+            arrCombolName[number * 2 + 1].setSelectedItem(loads.getLNameTeacherOnTeacherLoadId(teacherLoadId));
+            arrCheck[number].setSelected(false);
+        }
+        
     }
     
     /**
@@ -146,23 +179,24 @@ public class Shedule extends javax.swing.JPanel {
      * Свормировать массив занятий(Включая окна)
      */
     public void initArrToInsert(){
-        int k = 0;
-        for (int i = 0; i < 5; i++){
-            if (getValueCheck(i)){
-                if (isNotEmptyLesson(i + i)){
-                    setValueOfArrToInsert(k, i, "", getValueComboDiscipline(i + i), getValueCombolName(i + i));
+		int number;
+        for (int i = 0; i < 10; i++){
+            if (getValueCheck(i / 2)){
+                if (isNotEmptyLesson(i)){
+					number = i / 2 + 1;
+                    setValueOfArrToInsert(i, number, "", getValueComboDiscipline(i), getValueCombolName(i));
                 }
-                k =  k + 2;
+                i++;
             }
             else{
-                if (isNotEmptyLesson(i + i)){
-                    setValueOfArrToInsert(k, i, "I", getValueComboDiscipline(i + i), getValueCombolName(i + i));
+                if (isNotEmptyLesson(i)){
+					number = i / 2 + 1;
+                    setValueOfArrToInsert(i, number, "I", getValueComboDiscipline(i), getValueCombolName(i));
                 }
-                k++;
-                if (isNotEmptyLesson(i + i + 1)){
-                    setValueOfArrToInsert(k, i, "II", getValueComboDiscipline(i + i + 1), getValueCombolName(i + i + 1));
+                if (isNotEmptyLesson(i)){
+					number = (i - 1) / 2 + 1;
+                    setValueOfArrToInsert(i, number, "II", getValueComboDiscipline(i), getValueCombolName(i));
                 }
-                k++;
             }
         }
     }
@@ -204,7 +238,7 @@ public class Shedule extends javax.swing.JPanel {
      * @param teacherLoad
      */
     public void setValueOfArrToInsert(int i, int number, String type, Object discipline, Object lName){
-        arrToInsert[i][0] = "" + ++number;
+        arrToInsert[i][0] = "" + number;
                     arrToInsert[i][1] = type;
                     arrToInsert[i][2] = loads.getTeacherLoadId((String)lName, (String) discipline);
     }

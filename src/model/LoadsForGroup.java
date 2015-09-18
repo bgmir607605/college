@@ -22,6 +22,10 @@ public class LoadsForGroup {
         setArrTeachers();
         setArrDisciplines();
     }
+    /**
+     * | 0  |     1     |      2       |
+     * | id | teacherId | disciplineId |
+     */
     String[][] arrLoads;
     String[][] arrTeachers;
     String[][] arrDisciplines;
@@ -116,6 +120,43 @@ public class LoadsForGroup {
         }
         return id;
     }
+    public String getDisciplineNameOnId(String id){
+        String discipline = null;
+        for (int i = 0; i < arrDisciplines.length; i++){
+            if (arrDisciplines[i][0].equals(id)){
+                discipline = arrDisciplines[i][1];
+            }
+        }
+        return discipline;
+    }
+    public String getLNameTeacherOnId(String id){
+        String lName = null;
+        for (int i = 0; i < arrTeachers.length; i++){
+            if (arrTeachers[i][0].equals(id)){
+                lName = arrTeachers[i][3];
+            }
+        }
+        return lName;
+    }
+    public String getDisciplineOnTeacherLoadId(String id){
+        String disciplineId = null;
+        for (int i = 0; i < arrLoads.length; i++){
+            if (arrLoads[i][0].equals(id)){
+                disciplineId = arrLoads[i][2];
+            }
+        }
+        return getDisciplineNameOnId(disciplineId);
+    }
+    public String getLNameTeacherOnTeacherLoadId(String id){
+        String teacherId = null;
+        for (int i = 0; i < arrLoads.length; i++){
+            if (arrLoads[i][0].equals(id)){
+                teacherId = arrLoads[i][1];
+            }
+        }
+        return getLNameTeacherOnId(teacherId);
+    }
+     
     
     public String getStringOfTeacherLoadsId(){
         String s = "";
