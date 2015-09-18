@@ -99,7 +99,7 @@ public class Shedule extends javax.swing.JPanel {
         }
     }
     void setAvailableLesson(String[] lesson){
-        int number = Integer.parseInt(lesson[0]);
+        int number = Integer.parseInt(lesson[0]) - 1;
         String type = lesson[1];
         String teacherLoadId = lesson[2];
         if (type.equals("")){
@@ -171,7 +171,6 @@ public class Shedule extends javax.swing.JPanel {
     }
     public void addShedule(){
         try {
-                System.out.println(getQuaryToInsert());
                 new MainDB().ins(getQuaryToInsert());
                 JOptionPane.showMessageDialog(null,"Расписание добавлено", "Сообщение системы", JOptionPane.DEFAULT_OPTION);
             } catch (SQLException ex) {
