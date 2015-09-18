@@ -42,6 +42,9 @@ public class Shedule extends javax.swing.JPanel {
         initComponents();
         initArrsOfCombo();
         initDate();
+        for (int i = 0; i < arrComboDiscipline.length; i++){
+            arrComboDiscipline[i].setSelectedItem("");
+        }
     }
     
     /**
@@ -168,6 +171,7 @@ public class Shedule extends javax.swing.JPanel {
     }
     public void addShedule(){
         try {
+                System.out.println(getQuaryToInsert());
                 new MainDB().ins(getQuaryToInsert());
                 JOptionPane.showMessageDialog(null,"Расписание добавлено", "Сообщение системы", JOptionPane.DEFAULT_OPTION);
             } catch (SQLException ex) {
@@ -179,24 +183,27 @@ public class Shedule extends javax.swing.JPanel {
      * Свормировать массив занятий(Включая окна)
      */
     public void initArrToInsert(){
-		int number;
-        for (int i = 0; i < 10; i++){
+	int number;
+        int i = 0;
+        while(i < 10){
             if (getValueCheck(i / 2)){
                 if (isNotEmptyLesson(i)){
-					number = i / 2 + 1;
+                    number = i / 2 + 1;
                     setValueOfArrToInsert(i, number, "", getValueComboDiscipline(i), getValueCombolName(i));
                 }
-                i++;
+                i = i + 2;
             }
             else{
                 if (isNotEmptyLesson(i)){
-					number = i / 2 + 1;
+                    number = i / 2 + 1;
                     setValueOfArrToInsert(i, number, "I", getValueComboDiscipline(i), getValueCombolName(i));
                 }
+                i++;
                 if (isNotEmptyLesson(i)){
-					number = (i - 1) / 2 + 1;
+                    number = (i - 1) / 2 + 1;
                     setValueOfArrToInsert(i, number, "II", getValueComboDiscipline(i), getValueCombolName(i));
                 }
+                i++;
             }
         }
     }
@@ -251,7 +258,8 @@ public class Shedule extends javax.swing.JPanel {
         return (String) arrComboDiscipline[i].getSelectedItem();
     }
     public boolean isNotEmptyLesson(int i){
-        return arrComboDiscipline[i].getSelectedIndex() != -1;
+        String v = (String) arrComboDiscipline[i].getSelectedItem();
+        return !(v.equals(""));
     }
     public String getValueCombolName(int i){
         return (String) arrCombolName[i].getSelectedItem();
@@ -304,7 +312,7 @@ public class Shedule extends javax.swing.JPanel {
     //  Автогенерированный код  //
     //                          //
     //////////////////////////////
-    public void initArrsOfCombo(){
+    public final void initArrsOfCombo(){
         arrComboDiscipline[0] = shedule11;
         arrComboDiscipline[1] = shedule12;
         arrComboDiscipline[2] = shedule21;
@@ -315,7 +323,7 @@ public class Shedule extends javax.swing.JPanel {
         arrComboDiscipline[7] = shedule42;
         arrComboDiscipline[8] = shedule51;
         arrComboDiscipline[9] = shedule52;
-        
+
         arrCombolName[0] = sheduleTeacherLName11;
         arrCombolName[1] = sheduleTeacherLName12;
         arrCombolName[2] = sheduleTeacherLName21;
@@ -384,16 +392,26 @@ public class Shedule extends javax.swing.JPanel {
 
         jLabel3.setText("1.");
 
-        shedule11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule11ActionPerformed(evt);
+        shedule11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        shedule11.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule11PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
+        shedule12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         shedule12.setEnabled(false);
-        shedule12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule12ActionPerformed(evt);
+        shedule12.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule12PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -427,16 +445,26 @@ public class Shedule extends javax.swing.JPanel {
             }
         });
 
-        shedule21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule21ActionPerformed(evt);
+        shedule21.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        shedule21.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule21PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
+        shedule22.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         shedule22.setEnabled(false);
-        shedule22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule22ActionPerformed(evt);
+        shedule22.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule22PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -450,16 +478,26 @@ public class Shedule extends javax.swing.JPanel {
 
         jLabel13.setText("2.");
 
+        shedule32.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         shedule32.setEnabled(false);
-        shedule32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule32ActionPerformed(evt);
+        shedule32.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule32PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
-        shedule31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule31ActionPerformed(evt);
+        shedule31.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        shedule31.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule31PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -483,16 +521,26 @@ public class Shedule extends javax.swing.JPanel {
             }
         });
 
-        shedule41.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule41ActionPerformed(evt);
+        shedule41.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        shedule41.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule41PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
+        shedule42.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         shedule42.setEnabled(false);
-        shedule42.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule42ActionPerformed(evt);
+        shedule42.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule42PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -506,16 +554,26 @@ public class Shedule extends javax.swing.JPanel {
 
         jLabel16.setText("5.");
 
-        shedule51.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule51ActionPerformed(evt);
+        shedule51.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        shedule51.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule51PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
+        shedule52.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         shedule52.setEnabled(false);
-        shedule52.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shedule52ActionPerformed(evt);
+        shedule52.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                shedule52PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -716,14 +774,6 @@ public class Shedule extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void shedule11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule11ActionPerformed
-        selectDisciplineLesson(0);
-    }//GEN-LAST:event_shedule11ActionPerformed
-
-    private void shedule12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule12ActionPerformed
-        selectDisciplineLesson(1);
-    }//GEN-LAST:event_shedule12ActionPerformed
-
     private void groupShedulePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_groupShedulePopupMenuWillBecomeVisible
         setGroupsBox(new MainDB().getBoxList("name", "groups"));
     }//GEN-LAST:event_groupShedulePopupMenuWillBecomeVisible
@@ -736,25 +786,9 @@ public class Shedule extends javax.swing.JPanel {
         setTotalLesson(0);
     }//GEN-LAST:event_check1ActionPerformed
 
-    private void shedule21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule21ActionPerformed
-        selectDisciplineLesson(2);
-    }//GEN-LAST:event_shedule21ActionPerformed
-
-    private void shedule22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule22ActionPerformed
-        selectDisciplineLesson(3);
-    }//GEN-LAST:event_shedule22ActionPerformed
-
     private void check2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check2ActionPerformed
         setTotalLesson(1);
     }//GEN-LAST:event_check2ActionPerformed
-
-    private void shedule32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule32ActionPerformed
-        selectDisciplineLesson(5);
-    }//GEN-LAST:event_shedule32ActionPerformed
-
-    private void shedule31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule31ActionPerformed
-        selectDisciplineLesson(4);
-    }//GEN-LAST:event_shedule31ActionPerformed
 
     private void check3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check3ActionPerformed
         setTotalLesson(2);
@@ -764,25 +798,9 @@ public class Shedule extends javax.swing.JPanel {
         setTotalLesson(3);
     }//GEN-LAST:event_check4ActionPerformed
 
-    private void shedule41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule41ActionPerformed
-        selectDisciplineLesson(6);
-    }//GEN-LAST:event_shedule41ActionPerformed
-
-    private void shedule42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule42ActionPerformed
-        selectDisciplineLesson(7);
-    }//GEN-LAST:event_shedule42ActionPerformed
-
     private void check5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check5ActionPerformed
         setTotalLesson(4);
     }//GEN-LAST:event_check5ActionPerformed
-
-    private void shedule51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule51ActionPerformed
-        selectDisciplineLesson(8);
-    }//GEN-LAST:event_shedule51ActionPerformed
-
-    private void shedule52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shedule52ActionPerformed
-        selectDisciplineLesson(9);
-    }//GEN-LAST:event_shedule52ActionPerformed
 
     private void groupShedulePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_groupShedulePopupMenuWillBecomeInvisible
         selectGroup();
@@ -795,6 +813,46 @@ public class Shedule extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         resetDisciplineBoxes();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void shedule11PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule11PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(0);
+    }//GEN-LAST:event_shedule11PopupMenuWillBecomeInvisible
+
+    private void shedule12PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule12PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(1);
+    }//GEN-LAST:event_shedule12PopupMenuWillBecomeInvisible
+
+    private void shedule21PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule21PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(2);
+    }//GEN-LAST:event_shedule21PopupMenuWillBecomeInvisible
+
+    private void shedule22PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule22PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(3);
+    }//GEN-LAST:event_shedule22PopupMenuWillBecomeInvisible
+
+    private void shedule31PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule31PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(4);
+    }//GEN-LAST:event_shedule31PopupMenuWillBecomeInvisible
+
+    private void shedule32PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule32PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(5);
+    }//GEN-LAST:event_shedule32PopupMenuWillBecomeInvisible
+
+    private void shedule41PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule41PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(6);
+    }//GEN-LAST:event_shedule41PopupMenuWillBecomeInvisible
+
+    private void shedule42PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule42PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(7);
+    }//GEN-LAST:event_shedule42PopupMenuWillBecomeInvisible
+
+    private void shedule51PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule51PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(8);
+    }//GEN-LAST:event_shedule51PopupMenuWillBecomeInvisible
+
+    private void shedule52PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_shedule52PopupMenuWillBecomeInvisible
+        selectDisciplineLesson(9);
+    }//GEN-LAST:event_shedule52PopupMenuWillBecomeInvisible
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
