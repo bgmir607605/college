@@ -26,6 +26,9 @@ public class TeacherLoad extends javax.swing.JPanel {
      */
     public TeacherLoad() {
         initComponents();
+        getLFMNameList();
+        refTab();
+        getDisciplineList();
     }
     
     public void refTab(){
@@ -33,11 +36,6 @@ public class TeacherLoad extends javax.swing.JPanel {
     }
     
     public void addTeacherLoad(){
-        //lName = (String) form.comboLName.getSelectedItem();
-        //fName = (String) form.comboFName.getSelectedItem();
-        //mName = (String) form.comboMName.getSelectedItem();
-        //group = (String) form.comboGroup.getSelectedItem();
-        //discipline = (String) form.comboDiscipline.getSelectedItem();
         if (Checks.notEmpTeacher(lName, fName, mName)){    
         try {
                 new MainDB().ins("insert into teacherLoad (teacherId, groupId, disciplineId)" +
@@ -47,11 +45,6 @@ public class TeacherLoad extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
             }
-        //form.comboLName.setSelectedItem(null);
-        //form.comboFName.setSelectedItem(null);
-        //form.comboMName.setSelectedItem(null);
-        //form.comboGroup.setSelectedItem(null);
-        //form.comboDiscipline.setSelectedItem(null);
         refTab();
         }
     }
@@ -61,12 +54,6 @@ public class TeacherLoad extends javax.swing.JPanel {
          * 
          * 
          */ 
-        //int sr = form.jTable5.getSelectedRow();
-        //lName = (String) form.jTable5.getValueAt(sr, 0);
-        //fName = (String) form.jTable5.getValueAt(sr, 1);
-        //mName = (String) form.jTable5.getValueAt(sr, 2);
-        //group = (String) form.jTable5.getValueAt(sr, 3);
-        //discipline = (String) form.jTable5.getValueAt(sr, 4);
         
         try {
             new MainDB().del("teacherLoad", "teacherId = (select id from teachers where fName = '" + fName + "' and lName = '" + lName + "' and mName = '" + mName + "') and groupId = (select id from groups where name = '" + group + "') and disciplineId = (select id from discipline where shortName = '" + discipline + "')");
@@ -125,6 +112,7 @@ public class TeacherLoad extends javax.swing.JPanel {
         comboDiscipline = new javax.swing.JComboBox();
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,6 +154,8 @@ public class TeacherLoad extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Детализировать");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,13 +163,6 @@ public class TeacherLoad extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5)
-                            .addComponent(jButton7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -198,7 +181,19 @@ public class TeacherLoad extends javax.swing.JPanel {
                         .addComponent(comboFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(comboMName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton5)
+                                    .addComponent(jButton7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +216,9 @@ public class TeacherLoad extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(51, 51, 51))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jButton5)
@@ -246,6 +243,7 @@ public class TeacherLoad extends javax.swing.JPanel {
     public javax.swing.JComboBox comboGroup;
     public javax.swing.JComboBox comboLName;
     public javax.swing.JComboBox comboMName;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;

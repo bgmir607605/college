@@ -9,7 +9,7 @@ package model;
 import DB.MainDB;
 import DB.SheduleDB;
 import gui.Form;
-import tabs.Shedule;
+import shedule.Shedule;
 
 /**
  *

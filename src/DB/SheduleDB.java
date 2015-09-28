@@ -6,7 +6,6 @@
 
 package DB;
 
-import static DB.DB.conn;
 import java.sql.DriverManager;
 
 /**
