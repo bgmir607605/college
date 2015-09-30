@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-package gui;
+package shedule;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,14 +15,17 @@ import java.util.Date;
  *
  * @author aamir
  */
-public class comboDate extends javax.swing.JPanel {
-
+public class comboDate extends javax.swing.JPanel implements ActionListener {
+    public Shedule form;
     /**
      * Creates new form comboDate
      */
     public comboDate() {
+         
         initComponents();
-        initDate();
+        
+
+
     }
     public String getDate(){
         String s = "";
@@ -80,6 +85,23 @@ public class comboDate extends javax.swing.JPanel {
         jSpinner3 = new javax.swing.JSpinner();
 
         jSpinner1.setToolTipText("");
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner2StateChanged(evt);
+            }
+        });
+
+        jSpinner3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner3StateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,10 +125,28 @@ public class comboDate extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        form.setAvailable();
+    }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+form.setAvailable();        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinner2StateChanged
+
+    private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
+form.setAvailable();        // TODO add your handling code here:
+    }//GEN-LAST:event_jSpinner3StateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Работает");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

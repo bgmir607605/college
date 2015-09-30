@@ -5,18 +5,6 @@ skinparam headerFontStyle bold
 skinparam classAttributeIconSize 0
 scale 1.0
 package DB {
-class DB.DB {
-.. Fields  ..
-~rs : ResultSet
-~stmt : Statement
-.. Methods ..
-.. Static ..
-~ {static} closeCon() : void
-~ {static} conn : Connection
-~ {static} password : String
-~ {static} url : String
-~ {static} userName : String
-}
 class DB.MainDB <? extends DB>  {
 .. Methods ..
 +del(String, String) : void
@@ -38,19 +26,53 @@ class DB.SheduleDB <? extends DB>  {
 +getGroupId(String) : String
 +isAvailableShedule(String, String) : boolean
 }
+class DB.DB {
+.. Fields  ..
+~rs : ResultSet
+~stmt : Statement
+.. Methods ..
+.. Static ..
+~ {static} closeCon() : void
+~ {static} conn : Connection
+~ {static} password : String
+~ {static} url : String
+~ {static} userName : String
+}
+
+}
+package TeacherLoad {
+class TeacherLoad.infoPanel {
+.. Fields  ..
+-jLabel1 : JLabel
+-jLabel2 : JLabel
+-jLabel3 : JLabel
+.. Methods ..
+-initComponents() : void
+}
+class TeacherLoad.hoursPanel {
+.. Fields  ..
+-jLabel1 : JLabel
+-jLabel2 : JLabel
+-jLabel3 : JLabel
+-jLabel4 : JLabel
+-jLabel5 : JLabel
+-jLabel6 : JLabel
+.. Methods ..
+-initComponents() : void
+}
+class TeacherLoad.Form {
+.. Fields  ..
+-jLabel1 : JLabel
+-jLabel2 : JLabel
+-jLabel3 : JLabel
+.. Methods ..
+-initComponents() : void
+.. Static ..
++ {static} main() : void
+}
 
 }
 package gui {
-class gui.comboDate {
-.. Fields  ..
--jSpinner1 : JSpinner
--jSpinner2 : JSpinner
--jSpinner3 : JSpinner
-.. Methods ..
-+getDate() : String
--initComponents() : void
-+initDate() : void
-}
 class gui.EditForm {
 .. Fields  ..
 +fName : JTextField
@@ -67,6 +89,11 @@ class gui.EditForm {
 -initComponents() : void
 -jButton1ActionPerformed(ActionEvent) : void
 }
+class gui.main {
+.. Methods ..
+.. Static ..
++ {static} main() : void
+}
 class gui.Checks {
 .. Methods ..
 .. Static ..
@@ -77,15 +104,14 @@ class gui.Checks {
 + {static} notEmpTeacherLoad() : boolean
 + {static} testConnect() : boolean
 }
-class gui.main {
-.. Methods ..
-.. Static ..
-+ {static} main() : void
-}
 
 }
 package model {
-class model.AvailableShedule {
+class model.MyTable {
+.. Fields  ..
+~v : String[][]
+.. Methods ..
+~getData(String, String[]) : void
 }
 class model.LoadsForGroup {
 .. Fields  ..
@@ -111,12 +137,6 @@ class model.LoadsForGroup {
 .. Static ..
 ~ {static} groupId : String
 }
-class model.MyTable {
-.. Fields  ..
-~v : String[][]
-.. Methods ..
-~getData(String, String[]) : void
-}
 
 }
 package shedule {
@@ -129,96 +149,124 @@ class shedule.AvailableShedule {
 ~setAvailableLesson(String[]) : void
 ~setAvailableShedule() : void
 }
+class shedule.LessonPanel {
+.. Fields  ..
+~arrToInsert : String[][]
++check : JCheckBox
+-label : JLabel
+~number : int
++subGroupI : JComboBox
++subGroupII : JComboBox
++teacherI : JComboBox
++teacherII : JComboBox
+.. Methods ..
+-checkActionPerformed(ActionEvent) : void
++getArrToInsert() : String[][]
+-initComponents() : void
++isNotEmptyLesson(JComboBox) : boolean
++resetLesson() : void
++selectDiscipline(JComboBox, JComboBox) : void
++setDisciplinesBox() : void
++setLesson(String, String, String) : void
++setNumber(int) : void
++setTotalLesson() : void
++setValueOfArrToInsert(int, String, Object, Object) : void
+-subGroupIActionPerformed(ActionEvent) : void
+-subGroupIIActionPerformed(ActionEvent) : void
+-subGroupIIPopupMenuWillBecomeInvisible(PopupMenuEvent) : void
+-subGroupIPopupMenuCanceled(PopupMenuEvent) : void
+-subGroupIPopupMenuWillBecomeInvisible(PopupMenuEvent) : void
+-subGroupIPopupMenuWillBecomeVisible(PopupMenuEvent) : void
+}
 class shedule.Shedule {
 .. Fields  ..
 ~AvailableShedule : String[][]
-~arrCheck : JCheckBox[]
-~arrComboDiscipline : JComboBox[]
-~arrCombolName : JComboBox[]
+~arrLessonPanels : LessonPanel[]
 ~arrToInsert : String[][]
 ~available : AvailableShedule
-+check1 : JCheckBox
-+check2 : JCheckBox
-+check3 : JCheckBox
-+check4 : JCheckBox
-+check5 : JCheckBox
 +comboDate : comboDate
 +groupShedule : JComboBox
 -jButton1 : JButton
 -jButton2 : JButton
 -jButton8 : JButton
--jLabel13 : JLabel
--jLabel14 : JLabel
--jLabel15 : JLabel
--jLabel16 : JLabel
--jLabel3 : JLabel
 -jLabel4 : JLabel
 -jLabel5 : JLabel
-+shedule11 : JComboBox
-+shedule12 : JComboBox
-+shedule21 : JComboBox
-+shedule22 : JComboBox
-+shedule31 : JComboBox
-+shedule32 : JComboBox
-+shedule41 : JComboBox
-+shedule42 : JComboBox
-+shedule51 : JComboBox
-+shedule52 : JComboBox
-+sheduleTeacherLName11 : JComboBox
-+sheduleTeacherLName12 : JComboBox
-+sheduleTeacherLName21 : JComboBox
-+sheduleTeacherLName22 : JComboBox
-+sheduleTeacherLName31 : JComboBox
-+sheduleTeacherLName32 : JComboBox
-+sheduleTeacherLName41 : JComboBox
-+sheduleTeacherLName42 : JComboBox
-+sheduleTeacherLName51 : JComboBox
-+sheduleTeacherLName52 : JComboBox
+-lessonP1 : LessonPanel
+-lessonP2 : LessonPanel
+-lessonP3 : LessonPanel
+-lessonP4 : LessonPanel
+-lessonP5 : LessonPanel
 .. Methods ..
 +addShedule() : void
--check1ActionPerformed(ActionEvent) : void
--check2ActionPerformed(ActionEvent) : void
--check3ActionPerformed(ActionEvent) : void
--check4ActionPerformed(ActionEvent) : void
--check5ActionPerformed(ActionEvent) : void
 ~getQuaryToInsert() : String
-+getValueCheck(int) : boolean
-+getValueComboDiscipline(int) : String
-+getValueCombolName(int) : String
 -groupShedulePopupMenuWillBecomeInvisible(PopupMenuEvent) : void
 -groupShedulePopupMenuWillBecomeVisible(PopupMenuEvent) : void
++initArrLessons() : void
 +initArrToInsert() : void
-+initArrsOfCombo() : void
 -initComponents() : void
-+isNotEmptyLesson(int) : boolean
 -jButton1ActionPerformed(ActionEvent) : void
 -jButton2ActionPerformed(ActionEvent) : void
 -jButton8ActionPerformed(ActionEvent) : void
-~resetDisciplineBoxes() : void
-+selectDisciplineLesson(int) : void
+~resetLessons() : void
 ~selectGroup() : void
-+setDisciplinesBox(String[]) : void
-~setGroupsBox(String[]) : void
-+setLesson(int, int, boolean, String, String) : void
-+setTotalLesson(int) : void
-+setValueOfArrToInsert(int, int, String, Object, Object) : void
--shedule11PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule12PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule21PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule22PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule31PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule32PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule41PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule42PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule51PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule52PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
-+uniqArr(String[]) : String[]
+~setGroupsBox() : void
++setLesson(String, int, String, String) : void
 .. Static ..
-~ {static} loads : LoadsForGroup
++ {static} loads : LoadsForGroup
+}
+class shedule.comboDate {
+.. Fields  ..
+-jSpinner1 : JSpinner
+-jSpinner2 : JSpinner
+-jSpinner3 : JSpinner
+.. Methods ..
++getDate() : String
+-initComponents() : void
++initDate() : void
 }
 
 }
 package tabs {
+class tabs.Discipline {
+.. Fields  ..
+-addDisciplineButton : JButton
++fName : JTextField
+~fullName : String
+-jButton1 : JButton
+-jLabel1 : JLabel
+-jLabel2 : JLabel
+-jScrollPane2 : JScrollPane
++jTable2 : JTable
++sName : JTextField
+~shortName : String
+.. Methods ..
++addDiscipline() : void
+-addDisciplineButtonActionPerformed(ActionEvent) : void
++delDiscipline() : void
+-initComponents() : void
+-jButton1ActionPerformed(ActionEvent) : void
++refTab() : void
+}
+class tabs.Specialty {
+.. Fields  ..
++codeSpec : JTextField
+~codeSpecialty : String
+-jButton2 : JButton
+-jButton3 : JButton
+-jLabel6 : JLabel
+-jLabel7 : JLabel
+-jScrollPane3 : JScrollPane
++jTable3 : JTable
++nameSpec : JTextField
+~nameSpecialty : String
+.. Methods ..
++addSpecialty() : void
++delSpecialty() : void
+-initComponents() : void
+-jButton2ActionPerformed(ActionEvent) : void
+-jButton3ActionPerformed(ActionEvent) : void
++refTab() : void
+}
 class tabs.TeacherLoad {
 .. Fields  ..
 +comboDiscipline : JComboBox
@@ -241,6 +289,7 @@ class tabs.TeacherLoad {
 ~mName : String
 .. Methods ..
 +addTeacherLoad() : void
+-comboGroupPopupMenuWillBecomeVisible(PopupMenuEvent) : void
 +delTeacherLoad() : void
 ~getDisciplineList() : void
 ~getLFMNameList() : void
@@ -248,6 +297,7 @@ class tabs.TeacherLoad {
 -jButton5ActionPerformed(ActionEvent) : void
 -jButton7ActionPerformed(ActionEvent) : void
 +refTab() : void
+~setGroupsBox() : void
 }
 class tabs.Group {
 .. Fields  ..
@@ -298,133 +348,6 @@ class tabs.Teacher {
 -jButton1ActionPerformed(ActionEvent) : void
 ~refTab() : void
 }
-class tabs.Discipline {
-.. Fields  ..
--addDisciplineButton : JButton
-+fName : JTextField
-~fullName : String
--jButton1 : JButton
--jLabel1 : JLabel
--jLabel2 : JLabel
--jScrollPane2 : JScrollPane
-+jTable2 : JTable
-+sName : JTextField
-~shortName : String
-.. Methods ..
-+addDiscipline() : void
--addDisciplineButtonActionPerformed(ActionEvent) : void
-+delDiscipline() : void
--initComponents() : void
--jButton1ActionPerformed(ActionEvent) : void
-+refTab() : void
-}
-class tabs.Shedule {
-.. Fields  ..
-~AvailableShedule : String[][]
-~arrCheck : JCheckBox[]
-~arrComboDiscipline : JComboBox[]
-~arrCombolName : JComboBox[]
-~arrToInsert : String[][]
-+check1 : JCheckBox
-+check2 : JCheckBox
-+check3 : JCheckBox
-+check4 : JCheckBox
-+check5 : JCheckBox
-+groupShedule : JComboBox
--jButton1 : JButton
--jButton2 : JButton
--jButton8 : JButton
--jLabel13 : JLabel
--jLabel14 : JLabel
--jLabel15 : JLabel
--jLabel16 : JLabel
--jLabel3 : JLabel
--jLabel4 : JLabel
--jLabel5 : JLabel
-+shedule11 : JComboBox
-+shedule12 : JComboBox
-+shedule21 : JComboBox
-+shedule22 : JComboBox
-+shedule31 : JComboBox
-+shedule32 : JComboBox
-+shedule41 : JComboBox
-+shedule42 : JComboBox
-+shedule51 : JComboBox
-+shedule52 : JComboBox
-+sheduleTeacherLName11 : JComboBox
-+sheduleTeacherLName12 : JComboBox
-+sheduleTeacherLName21 : JComboBox
-+sheduleTeacherLName22 : JComboBox
-+sheduleTeacherLName31 : JComboBox
-+sheduleTeacherLName32 : JComboBox
-+sheduleTeacherLName41 : JComboBox
-+sheduleTeacherLName42 : JComboBox
-+sheduleTeacherLName51 : JComboBox
-+sheduleTeacherLName52 : JComboBox
-.. Methods ..
-+addShedule() : void
--check1ActionPerformed(ActionEvent) : void
--check2ActionPerformed(ActionEvent) : void
--check3ActionPerformed(ActionEvent) : void
--check4ActionPerformed(ActionEvent) : void
--check5ActionPerformed(ActionEvent) : void
-~getQuaryToInsert() : String
-+getValueCheck(int) : boolean
-+getValueComboDiscipline(int) : String
-+getValueCombolName(int) : String
--groupShedulePopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--groupShedulePopupMenuWillBecomeVisible(PopupMenuEvent) : void
-+initArrToInsert() : void
-+initArrsOfCombo() : void
--initComponents() : void
-+isNotEmptyLesson(int) : boolean
--jButton1ActionPerformed(ActionEvent) : void
--jButton2ActionPerformed(ActionEvent) : void
--jButton8ActionPerformed(ActionEvent) : void
-~resetDisciplineBoxes() : void
-+selectDisciplineLesson(int) : void
-~selectGroup() : void
-~setAvailableLesson(String[]) : void
-~setAvailableShedule() : void
-+setDisciplinesBox(String[]) : void
-~setGroupsBox(String[]) : void
-+setTotalLesson(int) : void
-+setValueOfArrToInsert(int, int, String, Object, Object) : void
--shedule11PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule12PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule21PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule22PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule31PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule32PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule41PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule42PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule51PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
--shedule52PopupMenuWillBecomeInvisible(PopupMenuEvent) : void
-+uniqArr(String[]) : String[]
-.. Static ..
-~ {static} d : comboDate
-~ {static} loads : LoadsForGroup
-}
-class tabs.Specialty {
-.. Fields  ..
-+codeSpec : JTextField
-~codeSpecialty : String
--jButton2 : JButton
--jButton3 : JButton
--jLabel6 : JLabel
--jLabel7 : JLabel
--jScrollPane3 : JScrollPane
-+jTable3 : JTable
-+nameSpec : JTextField
-~nameSpecialty : String
-.. Methods ..
-+addSpecialty() : void
-+delSpecialty() : void
--initComponents() : void
--jButton2ActionPerformed(ActionEvent) : void
--jButton3ActionPerformed(ActionEvent) : void
-+refTab() : void
-}
 
 }
 package view {
@@ -437,12 +360,12 @@ class view.Filer {
 }
 
 }
-shedule.Shedule o-- "1..1" model.LoadsForGroup
-shedule.Shedule o-- "1..1" gui.comboDate
-tabs.Shedule o-- "1..1" model.LoadsForGroup
-tabs.Shedule o-- "1..1" gui.comboDate
 DB.DB <|-- DB.MainDB
-gui.EditForm o-- "1..1" tabs.Teacher
 DB.DB <|-- DB.SheduleDB
+gui.EditForm o-- "1..1" tabs.Teacher
+shedule.Shedule *-- "0..*" shedule.LessonPanel
+shedule.Shedule o-- "1..1" model.LoadsForGroup
+shedule.Shedule o-- "1..1" shedule.comboDate
+shedule.Shedule o-- "5..5" shedule.LessonPanel
 shedule.AvailableShedule "1..1" o..o "1..1" shedule.Shedule
 @enduml

@@ -36,17 +36,8 @@ public class AvailableShedule {
         int number = Integer.parseInt(lesson[0]) - 1;
         String discipline = shedule.loads.getDisciplineOnTeacherLoadId(teacherLoadId);
         String lName = shedule.loads.getLNameTeacherOnTeacherLoadId(teacherLoadId);
-        int line = number * 2;
-        boolean total = false;
-        switch (type){
-            case "":
-                total = true;
-                break;
-            case "II":
-                line++;
-                break;
-        }
-        shedule.setLesson(line, number, total, discipline, lName);
+
+        shedule.setLesson(type, number, discipline, lName);
         
         
     }

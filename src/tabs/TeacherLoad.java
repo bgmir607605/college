@@ -90,6 +90,13 @@ public class TeacherLoad extends javax.swing.JPanel {
             comboDiscipline.addItem(a[i]);
         }
     }
+    void setGroupsBox(){
+        comboGroup.removeAllItems();
+        String[] a = new MainDB().getBoxList("name", "groups");
+        for (String a1 : a) {
+            comboGroup.addItem(a1);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,6 +144,15 @@ public class TeacherLoad extends javax.swing.JPanel {
         comboMName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboGroup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboGroup.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboGroupPopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         comboDiscipline.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -235,6 +251,10 @@ public class TeacherLoad extends javax.swing.JPanel {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         delTeacherLoad();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void comboGroupPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboGroupPopupMenuWillBecomeVisible
+        setGroupsBox();
+    }//GEN-LAST:event_comboGroupPopupMenuWillBecomeVisible
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
